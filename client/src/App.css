@@ -1,7 +1,18 @@
-.Landing {
-  width: 100vw;
+* {
+  width: 100%;
+  align-items: center;
+  position: relative;
 }
 
-* {
-  background-color: black;
+.main-bg{
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  position: absolute;
+}
+
+,.container1{
+  width: 100%;
+  margin: auto;
+  position: relative;
 }

@@ -1,11 +1,13 @@
 import React from 'react'
-import bg from '../assets/images/bg.jpg'
+import './Landing.css'
+
 
 const Landing = () => {
   return (
-      <div>
-      <h1>Hello World</h1>
-      <img src={bg} className='main-bg'/>
+      <div className='title'>
+      <h1 className='sub-head head'>Perfect Lens for Your</h1>
+      <h1 className='main-head head'>Perfect Moment</h1>
+      
     </div>
   )
 }

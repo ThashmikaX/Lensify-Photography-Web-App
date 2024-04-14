@@ -27,7 +27,7 @@ const Navbar = () => {
     >
       <i className="uil uil-bars navOpenBtn" onClick={handleNavOpenClick}></i>
       <a href="/#" className="logo">
-        Finance Tracker
+        Lensify
       </a>
 
       <ul className="nav-links">
@@ -39,10 +39,13 @@ const Navbar = () => {
           <a href="/#">Home</a>
         </li>
         <li>
-          <a href="/core">Dashboard</a>
+          <a href="/core">Info</a>
         </li>
         <li>
-          <a href="trust">Our Trusters</a>
+          <a href="trust">Tours</a>
+        </li>
+        <li>
+          <a href="trust">Gallery</a>
         </li>
         <li>
           <a href="/aboutus">About Us</a>
