@@ -1,4 +1,4 @@
 import Navbar from "./Navbar"
-import Whether from "./Whether"
+import Button from "./Button"
 
-export { Navbar, Whether}
+export { Navbar, Button }
