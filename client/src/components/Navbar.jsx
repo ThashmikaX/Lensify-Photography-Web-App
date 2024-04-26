@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Navbar.css";
+import * as React from 'react';
+import Button from "../components/Button";
 
 const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -30,7 +32,8 @@ const Navbar = () => {
         Lensify
       </a>
 
-      <ul className="nav-links">
+      <div className="tabs">
+        <ul className="nav-links">
         <i
           className="uil uil-times navCloseBtn"
           onClick={handleNavCloseClick}
@@ -51,14 +54,9 @@ const Navbar = () => {
           <a href="/aboutus">About Us</a>
         </li>
       </ul>
+      </div>
 
-      <i
-        className={`uil uil-search search-icon ${
-          isSearchOpen ? "openSearch" : ""
-        }`}
-        id="searchIcon"
-        onClick={handleSearchClick}
-      ></i>
+      <a href="/login" className="login"><Button variant="contained" className="white" >Login</Button></a>
       <div className={`search-box ${isSearchOpen ? "openSearch" : ""}`}>
         <i className="uil uil-search search-icon"></i>
         <input type="text" placeholder="Search here..." />
