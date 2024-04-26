@@ -1,6 +1,18 @@
 
 
 .title{
+    height: 100%;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    vertical-align: middle;
+    text-align: center;
+
 
 }
 
@@ -8,11 +20,26 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
     align-items: center;
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+.main-head{
+    font-size: 5rem;
+    font-weight: 700;
+    color: #fffefe;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    mix-blend-mode: overlay;
+
+}
+
+.sub-head{
+    font-size: 2rem;
+    font-weight: 500;
+    color: #fffefe;
+    text-align: center;
 }
