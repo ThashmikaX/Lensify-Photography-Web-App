@@ -2,15 +2,11 @@ import { useState } from "react";
 import "./Navbar.css";
 import * as React from 'react';
 import Button from "../components/Button";
+import { Link } from 'react-scroll';
 
-const Navbar = () => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+const Navbar = ({ links }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-
-  const handleSearchClick = () => {
-    setIsSearchOpen(!isSearchOpen);
-    setIsNavOpen(false);
-  };
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const handleNavOpenClick = () => {
     setIsNavOpen(true);
@@ -22,45 +18,32 @@ const Navbar = () => {
   };
 
   return (
-    <nav
+    <nav 
       className={`nav ${isSearchOpen ? "openSearch" : ""} ${
         isNavOpen ? "openNav" : ""
       }`}
     >
-      <i className="uil uil-bars navOpenBtn" onClick={handleNavOpenClick}></i>
+      <i className="uil uil-bars navOpenBtn" onClick={handleNavOpenClick}>This</i>
       <a href="/#" className="logo">
         Lensify
       </a>
 
       <div className="tabs">
         <ul className="nav-links">
-        <i
+          <i
           className="uil uil-times navCloseBtn"
           onClick={handleNavCloseClick}
-        ></i>
-        <li>
-          <a href="/#">Home</a>
-        </li>
-        <li>
-          <a href="/core">Info</a>
-        </li>
-        <li>
-          <a href="trust">Tours</a>
-        </li>
-        <li>
-          <a href="trust">Gallery</a>
-        </li>
-        <li>
-          <a href="/aboutus">About Us</a>
-        </li>
-      </ul>
+        >close</i>
+          {links.map((link, index) => (
+            <li key={index}>
+              <Link to={link.to} smooth={true}>{link.name}</Link>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <a href="/login" className="login"><Button variant="contained" className="white" >Login</Button></a>
-      <div className={`search-box ${isSearchOpen ? "openSearch" : ""}`}>
-        <i className="uil uil-search search-icon"></i>
-        <input type="text" placeholder="Search here..." />
-      </div>
+
     </nav>
   );
 };

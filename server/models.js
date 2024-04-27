@@ -5,6 +5,9 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    profilePicture: { type: String },
     role: { type: String, enum: ['photographer', 'client', 'admin'], default: 'client' },
     // Add other fields as needed for user profiles
 });
