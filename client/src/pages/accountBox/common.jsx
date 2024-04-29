@@ -6,6 +6,7 @@ export const BoxContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
+  text-align: center;
 `;
 
 export const FormContainer = styled.form`
@@ -72,7 +73,10 @@ export const SubmitButton = styled.button`
 `;
 
 export const LineText = styled.p`
+  width: 100%;
   font-size: 12px;
   color: rgba(200, 200, 200, 0.8);
   font-weight: 500;
+  margin-left:auto;
+  margin-right:auto;
 `;

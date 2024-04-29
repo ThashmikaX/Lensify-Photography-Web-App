@@ -9,7 +9,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
     vertical-align: middle;
     text-align: center;
 
@@ -27,8 +26,8 @@
 }
 
 .main-head{
-    font-size: 5rem;
-    font-weight: 700;
+    font-size: 8rem;
+    font-weight: 900;
     color: #fffefe;
     text-align: center;
     vertical-align: middle;
@@ -38,7 +37,7 @@
 }
 
 .sub-head{
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 500;
     color: #fffefe;
     text-align: center;

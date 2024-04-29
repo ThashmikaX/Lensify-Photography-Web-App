@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    align-items: center;
+    vertical-align: middle;
+
+}
+
+.BoxContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70%;
+    width: 20%;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+    margin: auto;
+    vertical-align: middle;
+    margin-bottom: auto;
+    margin-top: auto;
+    justify-content: center;
+    text-align: center;
+}

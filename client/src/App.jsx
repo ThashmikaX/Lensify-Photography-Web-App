@@ -1,5 +1,5 @@
 import './App.css'
-import { Landing } from './pages'
+import { Landing, CompleteProf	 } from './pages'
 import { Navbar } from './components';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import bg from './assets/images/bg.jpg'
@@ -61,7 +61,8 @@ const App = () => {
               </Element>
             </>
           } />
-          <Route path='/login' element={<><AppContainer><AccountBox /></AppContainer><img src={bg} className='main-bg'/></>} />
+          <Route path='/login' element={<><AppContainer><AccountBox /></AppContainer><img src={bg} className='main-bg' /></>} />
+          <Route path='/complete' element={<><AppContainer><CompleteProf/></AppContainer><img src={bg} className='main-bg'/></>} />
         </Routes>
         
       </div>

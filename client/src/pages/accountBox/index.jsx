@@ -6,15 +6,18 @@ import { motion } from 'framer-motion';
 import { AccountContext } from './accountContext'
 
 const BoxContainer = styled.div`
-  width: 280px;
+  width: 20%;
+  height: 70%;
   min-height: 550px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   border-radius: 19px;
   background-color: #fff;
   box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
   position: relative;
   overflow: hidden;
+
 `;
 
 const TopContainer = styled.div`
