@@ -4,8 +4,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
-
 }
 
 .main-bg {
@@ -39,10 +37,17 @@
 }
 
 .nav-bar {
-  z-index: 1;
+  position: fixed;
+  z-index: 999;
   height: 5%;
+  left: 0px;
+  top: 0px;
 }
 
 .section1 {
   height: 80vh;
+}
+
+.container2{
+  z-index: 0;
 }

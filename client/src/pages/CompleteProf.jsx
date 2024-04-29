@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   BoldLink,
   BoxContainer,
@@ -7,15 +7,14 @@ import {
   LineText,
   MutedLink,
   SubmitButton,
-} from "./common";
-import { Marginer } from "../marginer";
-import { AccountContext } from './accountContext';
+} from "./accountBox/common";
+import { Marginer } from "../pages/marginer";
+import "./CompleteProf.css"
 
-export function SignupForm(props) {
+const CompleteProf = () => {
 
-  const { switchToSignin } = useContext(AccountContext);
   return (
-    <BoxContainer>
+    <div className="BoxContainer">
       <FormContainer>
         <Input type="text" placeholder="Full name" />
         <Input type="email" placeholder="Email" />
@@ -23,14 +22,16 @@ export function SignupForm(props) {
         <Input type="password" placeholder="Confirm password" />
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
-      <a href="/complete"><SubmitButton href="/complete" type="submit">Signup</SubmitButton></a>
+      <SubmitButton type="submit">Signup</SubmitButton>
       <Marginer direction="vertical" margin="5px" />
       <LineText>
         Already have an account?{" "}
-        <BoldLink onClick={switchToSignin} href="#">
+        <BoldLink href="#">
           Signin
         </BoldLink>
       </LineText>
-    </BoxContainer>
+    </div>
   );
 }
+
+export default CompleteProf

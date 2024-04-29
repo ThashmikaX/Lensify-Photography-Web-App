@@ -23,6 +23,7 @@
 
 .nav {
     justify-content: space-between;
+    position: fixed;
 }
 
 a {
