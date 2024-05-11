@@ -51,3 +51,5 @@
 .container2{
   z-index: 0;
 }
+
+@import 'simplebar-react/dist/simplebar.min.css';
