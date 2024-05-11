@@ -8,10 +8,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-    },
-  },
-  resolve: {
-    alias: {
       '@mui/styled-engine': '@mui/styled-engine-sc',
     },
   },
