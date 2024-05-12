@@ -12,9 +12,6 @@ import { Marginer } from "../marginer";
 import { AccountContext } from './accountContext';
 import Axios from "axios";
 
-
-
-
 export function SignupForm(props) {
 
   const [firstName, setfirstName] = useState("");
@@ -22,16 +19,24 @@ export function SignupForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [profileImage, setProfileImage] = useState(null);
+
+  const [step, setStep] = useState(1);
+
   const handleSubmit = (event) => {
     console.log("submitting");
     event.preventDefault();
-    console.log(firstName, lastName, email, confirmPassword);
-  Axios.post("http://localhost:3001/register", {
-    FirstName: firstName,
-    LastName: lastName,
-    Email: email,
-    Password: confirmPassword,
-  })
+    console.log(firstName, lastName, email, confirmPassword, username, profileImage);
+
+  Axios.post("http://localhost:3000/users", {
+  firstName: firstName,
+  lastName: lastName,
+  email: email,
+  password: confirmPassword,
+  username: username,
+  profileImage: profileImage
+})
   .then(response => {
     console.log(response);
   })
@@ -40,10 +45,11 @@ export function SignupForm(props) {
   });
 }
    
-
   const { switchToSignin } = useContext(AccountContext);
+  
+  if (step === 1) {
   return (
-    <BoxContainer onSubmit={handleSubmit}>
+    <BoxContainer>
       <FormContainer>
         <Input type="text" placeholder="First name"
           onChange={(e) => {
@@ -65,15 +71,17 @@ export function SignupForm(props) {
           onChange={(e) => {
             if (e.target.value == password) {
               setConfirmPassword(e.target.value);
+              console.log("Passwords matched");
             }
             else {
               console.log("Passwords do not match");   
             }
           }} />
       </FormContainer>
+
       <Marginer direction="vertical" margin={10} />
-      <button type="submit" onClick={handleSubmit} className="button submit">
-          Submit
+      <button type="submit" onClick={() => setStep(2)} className="button submit">
+          Next
       </button>
       <Marginer direction="vertical" margin="5px" />
       <LineText>
@@ -84,4 +92,20 @@ export function SignupForm(props) {
       </LineText>
     </BoxContainer>
   );
+} else if (step === 2) {
+  return (
+    <FormContainer>
+      <Input type="text" placeholder="Username"
+        onChange={(e) => {
+          setUsername(e.target.value);
+        }} />
+      <Input type="file" onChange={(e) => {
+        setProfileImage(e.target.files[0]);
+      }} />
+      <button type="submit" onClick={handleSubmit}>Submit</button>
+    </FormContainer>
+  );
+}
+
+  
 }
