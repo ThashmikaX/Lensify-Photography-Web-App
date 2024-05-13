@@ -11,6 +11,7 @@ import {
 import { Marginer } from "../marginer";
 import { AccountContext } from './accountContext';
 import Axios from "axios";
+import { NextButton } from "../../components";
 
 export function SignupForm(props) {
 
@@ -80,9 +81,9 @@ export function SignupForm(props) {
       </FormContainer>
 
       <Marginer direction="vertical" margin={10} />
-      <button type="submit" onClick={() => setStep(2)} className="button submit">
+      <NextButton type="submit" onClick={() => setStep(2)} className="button submit">
           Next
-      </button>
+      </NextButton>
       <Marginer direction="vertical" margin="5px" />
       <LineText>
         Already have an account?{" "}
