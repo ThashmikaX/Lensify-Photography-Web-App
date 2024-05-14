@@ -44,3 +44,9 @@
 .container2{
   z-index: 0;
 }
+
+.content-window{
+  top: 200px;
+  height: 100%;
+  position: absolute;
+}

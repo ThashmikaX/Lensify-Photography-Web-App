@@ -64,7 +64,7 @@ const App = () => {
           } />
           <Route path='/login' element={<><AppContainer><AccountBox /></AppContainer><img src={bg} className='main-bg' /></>} />
           <Route path='/complete' element={<><AppContainer><CompleteProf /></AppContainer><img src={bg} className='main-bg' /></>} />
-          <Route path='/dashboard' element={<><ClippedDrawer/><img src={bg} className='main-bg' /></>} />
+          <Route path='/dashboard' element={<><div className='content-window'><Dashboard/></div><img src={bg} className='main-bg' /></>} />
         </Routes>
         
       </div>
