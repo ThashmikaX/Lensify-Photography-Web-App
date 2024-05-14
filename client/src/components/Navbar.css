@@ -2,28 +2,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
 
 .nav {
-    top: 0;
-    left: 0;
     width: 100%;
-    padding: 50px 100px;
+    padding: 45px 100px !important;
 }
 
-.nav,
-.nav .nav-links {
+.nav-links {
     display: flex;
-    align-items: center;
 }
 
 .nav {
     justify-content: space-between;
     position: fixed;
+
 }
 
 a {
@@ -34,15 +28,19 @@ a {
 .nav .logo {
     font-size: 22px;
     font-weight: 500;
-    width: 30%;
+    width: 20%;
+    text-decoration: none;
+    color: #ffffff;
 }
 
-.nav .nav-links {
+.nav-links {
     column-gap: 40px;
     list-style: none;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+
 }
 
 .nav .nav-links a {
@@ -107,10 +105,16 @@ a {
 
 .login{
     width: 20%;
+    text-decoration: none;
+    color: #ffffff;
 }
 
 .tabs{
-    width: 100%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 /* responsive */

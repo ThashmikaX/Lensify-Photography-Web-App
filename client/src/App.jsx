@@ -1,5 +1,5 @@
 import './App.css'
-import { Landing, CompleteProf	 } from './pages'
+import { Landing, CompleteProf, Dashboard, ClippedDrawer	 } from './pages'
 import { Navbar } from './components';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import bg from './assets/images/bg.jpg'
@@ -7,6 +7,7 @@ import styled from "styled-components";
 import AccountBox from "../src/pages/accountBox"
 import { Link, Element } from 'react-scroll';
 import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const App = () => {
@@ -62,7 +63,8 @@ const App = () => {
             </>
           } />
           <Route path='/login' element={<><AppContainer><AccountBox /></AppContainer><img src={bg} className='main-bg' /></>} />
-          <Route path='/complete' element={<><AppContainer><CompleteProf/></AppContainer><img src={bg} className='main-bg'/></>} />
+          <Route path='/complete' element={<><AppContainer><CompleteProf /></AppContainer><img src={bg} className='main-bg' /></>} />
+          <Route path='/dashboard' element={<><ClippedDrawer/><img src={bg} className='main-bg' /></>} />
         </Routes>
         
       </div>
