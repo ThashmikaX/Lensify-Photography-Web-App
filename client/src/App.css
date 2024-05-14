@@ -24,30 +24,29 @@
 }
 
 .Landing {
-  height: 95%;
+  height: 100%;
   width: 100%;
-  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  vertical-align: middle;
-  text-align: center;
 }
 
 .nav-bar {
   position: fixed;
   z-index: 999;
-  height: 5%;
-  left: 0px;
-  top: 0px;
+  height: 5vh;
 }
 
 .section1 {
-  height: 80vh;
 }
 
 .container2{
   z-index: 0;
+}
+
+.content-window{
+  top: 200px;
+  height: 100%;
+  position: absolute;
 }
