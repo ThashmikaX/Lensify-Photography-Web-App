@@ -35,7 +35,6 @@
 .nav-bar {
   position: fixed;
   z-index: 999;
-  height: 5vh;
 }
 
 .section1 {
@@ -46,7 +45,9 @@
 }
 
 .content-window{
-  top: 200px;
-  height: 100%;
+  top: 15vh;
+  height: 80%;
   position: absolute;
+  display: flex;
+  flex-direction: row;
 }
