@@ -46,7 +46,7 @@ app.post('/login', async (req, res) => {
         return res.status(400).send('Invalid email or password.');
     }
 
-    res.send('Logged in successfully.');
+    res.send({ message: 'Logged in successfully.', userId: user._id });
 });
 
 app.post('/portfolios', async (req, res) => {

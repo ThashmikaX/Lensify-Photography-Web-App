@@ -8,6 +8,7 @@ import AccountBox from "../src/pages/accountBox"
 import { Link, Element } from 'react-scroll';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { AuthProvider } from './auth/Auth';
 
 
 const App = () => {
@@ -41,6 +42,7 @@ const App = () => {
 `;
   
   return (
+    <AuthProvider>
     <Router>
       <div className="container1">
         {!hideNav && <Navbar className="nav-bar"links={[
@@ -70,6 +72,7 @@ const App = () => {
       </div>
       
     </Router>
+    </AuthProvider>
   );
 };
 
