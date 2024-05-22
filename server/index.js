@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { profileParser, portfolioParser } = require('./cloudinaryConfig'); // Import the parser middleware
 
 const { userSchema, portfolioSchema } = require('./models');
 
@@ -23,8 +24,12 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes
-app.post('/users', async (req, res) => {
-    const user = new User(req.body);
+app.post('/users', profileParser.single('profileImage'), async (req, res) => {
+    const imageUrl = req.file.path;
+    const user = new User({
+        ...req.body,
+        profilePicture: imageUrl, // Add the imageUrl to the user document
+    });
     await user.save();
     res.send(user);
 });
@@ -46,7 +51,7 @@ app.post('/login', async (req, res) => {
         return res.status(400).send('Invalid email or password.');
     }
 
-    res.send('Logged in successfully.');
+    res.send({ message: 'Logged in successfully.', userId: user._id });
 });
 
 app.post('/portfolios', async (req, res) => {

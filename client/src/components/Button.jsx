@@ -2,7 +2,11 @@ import React from "react";
 import "./Button.css";
 
 function Button(props) {
-  return <div className={`${props.className}`}>{props.children}</div>;
+  return (
+    <a href={props.url} className={props.className}>
+      {props.children}
+    </a>
+  );
 }
 
 export default Button;

@@ -42,7 +42,7 @@ const Navbar = ({ links }) => {
         </ul>
       </div>
 
-      <a href="/login" className="login"><Button variant="contained" className="white" >Login</Button></a>
+      <Button className="white login-button" url="/login">Login</Button>
 
     </nav>
   );

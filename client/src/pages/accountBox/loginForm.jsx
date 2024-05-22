@@ -11,6 +11,7 @@ import {
 } from "./common";
 import { Marginer } from "../marginer";
 import { AccountContext } from './accountContext';
+import { useAuth } from '../../auth/Auth';
 
 export function LoginForm(props) {
   const [email, setEmail] = useState('');
@@ -18,12 +19,16 @@ export function LoginForm(props) {
 
   const { switchToSignup } = useContext(AccountContext);
 
+  const { login, auth } = useAuth();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const response = await axios.post('http://localhost:3000/login', { email, password });
-      console.log(response.data); // 'Logged in successfully.'
+      console.log(response.data.message); // 'Logged in successfully.'
+      login(response.data.userId);
+      console.log(auth.userId); // { userId: '60f7b1f3f7e8e6b0b4d3b5b3' }
     } catch (error) {
       console.error(error);
     }
