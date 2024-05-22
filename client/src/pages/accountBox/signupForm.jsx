@@ -11,7 +11,6 @@ import {
 import { Marginer } from "../marginer";
 import { AccountContext } from './accountContext';
 import Axios from "axios";
-import { NextButton } from "../../components";
 
 export function SignupForm(props) {
 
@@ -26,24 +25,31 @@ export function SignupForm(props) {
   const [step, setStep] = useState(1);
 
   const handleSubmit = (event) => {
-    console.log("submitting");
-    event.preventDefault();
-    console.log(firstName, lastName, email, confirmPassword, username, profileImage);
+  event.preventDefault();
 
-  Axios.post("http://localhost:3000/users", {
-  firstName: firstName,
-  lastName: lastName,
-  email: email,
-  password: confirmPassword,
-  username: username,
-  profileImage: profileImage
-})
-  .then(response => {
-    console.log(response);
+  // Create a FormData object
+  const formData = new FormData();
+
+  // Append the form fields to the FormData object
+  formData.append('firstName', firstName);
+  formData.append('lastName', lastName);
+  formData.append('email', email);
+  formData.append('password', confirmPassword);
+  formData.append('username', username);
+  formData.append('profileImage', profileImage); // This should be a File object
+
+  // Send the request
+  Axios.post('http://localhost:3000/users', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
   })
-  .catch(error => {
-    console.error(error);
-  });
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.error(error);
+    });
 }
    
   const { switchToSignin } = useContext(AccountContext);
@@ -81,9 +87,9 @@ export function SignupForm(props) {
       </FormContainer>
 
       <Marginer direction="vertical" margin={10} />
-      <NextButton type="submit" onClick={() => setStep(2)} className="button submit">
+      <button type="submit" onClick={() => setStep(2)} className="button submit">
           Next
-      </NextButton>
+      </button>
       <Marginer direction="vertical" margin="5px" />
       <LineText>
         Already have an account?{" "}
