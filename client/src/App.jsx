@@ -7,7 +7,6 @@ import styled from "styled-components";
 import AccountBox from "../src/pages/accountBox"
 import { Link, Element } from 'react-scroll';
 import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { AuthProvider } from './auth/Auth';
 
 
