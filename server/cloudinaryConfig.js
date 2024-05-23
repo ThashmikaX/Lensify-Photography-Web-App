@@ -32,7 +32,7 @@ const portfolioStorage = new CloudinaryStorage({
             // Get the extension of the original file and return it as the format
             return path.extname(file.originalname).substring(1);
         },
-        public_id: (req, file) => req.body.username,
+        public_id: (req, file) => file.filename,
     },
 });
 

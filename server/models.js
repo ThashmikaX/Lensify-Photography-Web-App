@@ -18,12 +18,7 @@ const portfolioSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String },
     category: { type: String },
-    photos: [
-        {
-            imageUrl: { type: String, required: true },
-            description: { type: String }
-        }
-    ]
+    images: [{type: String}]
 });
 
 // Define schema for messages

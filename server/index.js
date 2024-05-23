@@ -1,26 +1,28 @@
-const express = require('express');
+const express = require('express'); //import express to create the server
+const app = express();
+
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const cors = require('cors');
+
+const chalk = require('chalk'); //Use for print color messages on console
+
 const { profileParser, portfolioParser } = require('./cloudinaryConfig'); // Import the parser middleware
 
-const { userSchema, portfolioSchema } = require('./models');
+const { userSchema, portfolioSchema } = require('./models'); //Import database models
 
 // Connect to MongoDB
 mongoose.connect("mongodb+srv://thashmikax:gBUooOKJm5KUUfqv@cluster0.mvsueol.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
-
 mongoose.connection.once('open', function () {
-    console.log("Successfully connected to the database");
+    console.log(chalk.green("Database connection established succesfully!"));
 });
 
-// Import your models
+// Import database models
 const User = mongoose.model('User', userSchema);
 const Portfolio = mongoose.model('Portfolio', portfolioSchema);
 
-const app = express();
-
 // Middleware
-app.use(bodyParser.json());
+app.use(express.json());    //parses incoming requests with JSON payloads
+app.use(express.urlencoded({ extended: true }));    //parses incoming requests with URL-encoded payloads
 app.use(cors());
 
 // Routes
@@ -54,16 +56,16 @@ app.post('/login', async (req, res) => {
     res.send({ message: 'Logged in successfully.', userId: user._id });
 });
 
-app.post('/portfolios', async (req, res) => {
-    const portfolio = new Portfolio(req.body);
-    await portfolio.save();
-    res.send(portfolio);
-});
+app.post('/portfolio', portfolioParser.array('image', 3), async (req, res) => {
+    const imagesArray = req.files.map(file => file.path);    //return the file path array named images
 
-app.get('/portfolios', async (req, res) => {
-    const portfolios = await Portfolio.find().populate('userId');
-    res.send(portfolios);
-});
+    const portfolio = new Portfolio({
+        ...req.body,
+        images: imagesArray
+    });
+    const result = await portfolio.save();
+    res.send({ result, message: "Portfolio data saved!" });
+})
 
 // Start the server
 app.listen(3000, () => console.log('Server is running on port 3000'));
