@@ -3,9 +3,11 @@ import "./Button.css";
 
 function Button(props) {
   return (
-    <a href={props.url} className={props.className}>
-      {props.children}
-    </a>
+    // <div className="button-main">
+      <a href={props.url} className="link">
+      <div className={props.className}>{props.children}</div>
+      </a>
+    /* </div> */
   );
 }
 
