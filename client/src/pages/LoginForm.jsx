@@ -14,6 +14,7 @@ const LoginForm = () => {
     const { login, auth } = useAuth();
 
     const handleSubmit = async (event) => {
+        console.log('Login button');
         event.preventDefault();
         try {
             const response = await axios.post('http://localhost:3000/login', { email, password });
@@ -40,7 +41,7 @@ const LoginForm = () => {
                     <input type='password' placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)}/>
                     <Button type='submit' className='glass-dark-ash button'>Login</Button>
                 </form>
-                <p>Forgot your password? <a href='#'>Reset</a></p>
+                <p><span className='frogot-pw'>Forgot your password? <a href='#'>Reset</a></span></p>
                 <p>Don't have an account? <a href='/register'>Register</a></p>
               </div>
           </div>

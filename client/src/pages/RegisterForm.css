@@ -31,18 +31,13 @@
         p {
             font-size: 1rem;
             margin-bottom: 1rem;
-            position: relative;
-
-            .frogot-pw {
-                margin-left: auto;
-                position: relative;
-            }
         }
         a {
             color: #333;
             text-decoration: none;
             font-weight: bold;
         }
+
         .field{
             width: 100%;
             margin-bottom: 1rem;
