@@ -50,7 +50,7 @@ export function SignupForm(props) {
     .catch(error => {
       console.error(error);
     });
-}
+  }
    
   const { switchToSignin } = useContext(AccountContext);
   
