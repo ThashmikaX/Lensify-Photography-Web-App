@@ -1,4 +1,8 @@
-
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 .title{
     height: 100%;
@@ -11,8 +15,6 @@
     justify-content: center;
     vertical-align: middle;
     text-align: center;
-
-
 }
 
 .head{
@@ -33,6 +35,7 @@
     vertical-align: middle;
     position: relative;
     mix-blend-mode: overlay;
+    overflow: hidden;
 
 }
 
@@ -41,4 +44,5 @@
     font-weight: 500;
     color: #fffefe;
     text-align: center;
+    overflow: hidden;
 }

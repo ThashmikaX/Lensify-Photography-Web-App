@@ -22,24 +22,31 @@ const ImageAnimation = () => {
 
   return (
       <>
-          <style>
-                {`img {
-                    left: 0px;
-                    top: 0px;
-                    z-index: -1;
-                    position: absolute;
-                    height: 100vh;
-                    width: 100vw;
-                    object-fit: cover;
-                    opacity: 0;
-                    transition: opacity 2s ease-in-out;
-                }
-                img.active {
-                    opacity: 1;
+        <style>
+            {`
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                width: 100%;
+            }
+            img {
+                left: 0px;
+                top: 0px;
+                z-index: -1;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                opacity: 0;
+                transition: opacity 2s ease-in-out;
+            }
+            img.active {
+                opacity: 1;
                 }`}
-          </style>
+        </style>
           {images.map((image, i) => (
-            <img src={image} className={i === index ? 'active' : ''} key={i} />
+            <img src={image} className={i === index ? 'active' : ''} key={i} style={{ overflowX: 'hidden' }}/>
           ))}
       </>
   )

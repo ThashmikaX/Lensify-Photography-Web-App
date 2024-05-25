@@ -2,7 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LoginForm.css'
 import LoginBackground from '../assets/images/login-bg.jpg'
-import { useContext, useState } from "react";
+import { useState } from "react";
 import axios from 'axios';
 import { useAuth } from '../auth/Auth';
 import { Button } from '../components';

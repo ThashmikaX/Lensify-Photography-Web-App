@@ -88,7 +88,7 @@ const RegisterForm = (props) => {
                     <div className='form '>
                         <p>Hi {firstName}</p>
                         <h1>Complete your profile</h1>
-                        <form className='field' onSubmit={handleSubmit}>
+                        <form className='field' >
                             <label>Username</label>
                             <input type='text' placeholder='Enter your username' value={username} onChange={(e) => setUsername(e.target.value)} />
                             <label>Profile Image
@@ -108,7 +108,11 @@ const RegisterForm = (props) => {
                                     }
                                 }}
                             />
-                            <Button type='submit' className='glass-dark-ash button'>Register</Button>
+                            <div style={{display:'flex'}}>
+                                <Button type='button' onClick={() => { setStep(1) }} className='glass-dark-ash button'>Previous</Button>
+                                <div className='space'></div>
+                                <Button type='submit' onClick={handleSubmit} className='glass-dark-ash button'>Register</Button>
+                            </div>
                         </form>
                     </div>
                 </div>
