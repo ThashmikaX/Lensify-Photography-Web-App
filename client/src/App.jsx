@@ -1,8 +1,7 @@
 import './App.css'
 import { Landing, Dashboard, LoginForm, RegisterForm	 } from './pages'
-import { Navbar } from './components';
+import { Navbar, ImageAnimation } from './components';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import bg from './assets/images/bg.jpg'
 import { Link, Element } from 'react-scroll';
 import React, { useState, useEffect } from 'react';
 import { AuthProvider } from './auth/Auth';
@@ -45,15 +44,15 @@ const App = () => {
             <>
               <Element name="section1" className='Landing section1'>
                 <Landing />
-                <img src={bg} className='main-bg'/>
+                <ImageAnimation/>
               </Element>
               <Element name="section2" className='Landing section1'>
               </Element>
             </>
           } />
-            <Route path='/login' element={<><LoginForm /><img src={bg} className='main-bg' /></>} />
-            <Route path='register' element={<><RegisterForm /><img src={bg} className='main-bg'/></>}/>
-            <Route path='/complete' element={<img src={bg} className='main-bg' />} />
+            <Route path='/login' element={<><LoginForm /><ImageAnimation/></>}/>
+            <Route path='register' element={<><RegisterForm /><ImageAnimation/></>}/>
+            <Route path='/complete' element={<ImageAnimation/>} />
             <Route path='/dashboard' element={<><div className='content-window'><Dashboard/></div></>} />
         </Routes>
         
