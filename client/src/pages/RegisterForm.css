@@ -37,7 +37,6 @@
             text-decoration: none;
             font-weight: bold;
         }
-
         .field{
             width: 100%;
             margin-bottom: 1rem;
@@ -68,10 +67,43 @@
                 transition: 0.5;
                 margin-top: 1rem;
             }
-
             button:hover {
                 background-color: #555;
             }
+            select{
+                width: 100%;
+                padding: 0.5rem;
+                font-size: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 20px;
+            }
+            select:focus {
+                outline: none;
+                border-color: #333;
+                transition: 0.5;
+            }
+            select:hover {
+                border-color: #333;
+                transition: 0.5;
+            }
+            .file-upload{
+                width: 100%;
+                padding: 0.5rem;
+                font-size: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 20px;
+            }
+            .file-upload:focus {
+                outline: none;
+                border-color: #333;
+                transition: 0.5;
+            }
+            .file-upload:hover {
+                border-color: #333;
+                transition: 0.5;
+            }
+
+
         }
     }
 }

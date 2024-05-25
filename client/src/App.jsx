@@ -1,5 +1,5 @@
 import './App.css'
-import { Landing, CompleteProf, Dashboard, LoginForm, RegisterForm	 } from './pages'
+import { Landing, Dashboard, LoginForm, RegisterForm	 } from './pages'
 import { Navbar } from './components';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import bg from './assets/images/bg.jpg'

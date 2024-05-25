@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './RegisterForm.css'
 import LoginBackground from '../assets/images/login-bg.jpg'
 import { Button } from '../components';
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Axios from "axios";
 
 const RegisterForm = (props) => {
@@ -19,31 +19,32 @@ const RegisterForm = (props) => {
     const [step, setStep] = useState(1);
 
     const handleSubmit = (event) => {
-    event.preventDefault();
+        event.preventDefault();
+        console.log("Register Clicked");
 
-    // Create a FormData object
-    const formData = new FormData();
+        // Create a FormData object
+        const formData = new FormData();
 
-    // Append the form fields to the FormData object
-    formData.append('firstName', firstName);
-    formData.append('lastName', lastName);
-    formData.append('email', email);
-    formData.append('password', confirmPassword);
-    formData.append('username', username);
+        // Append the form fields to the FormData object
+        formData.append('firstName', firstName);
+        formData.append('lastName', lastName);
+        formData.append('email', email);
+        formData.append('password', confirmPassword);
+        formData.append('username', username);
+        formData.append('role', role);
         formData.append('profileImage', profileImage); // This should be a File object
-        
 
-    // Send the request
-    Axios.post('http://localhost:3000/users', formData, {
-        headers: {
-        'Content-Type': 'multipart/form-data',
-        },
-    })
+        // Send the request
+        Axios.post('http://localhost:3000/users', formData, {
+            headers: {
+            'Content-Type': 'multipart/form-data',
+            },
+        })
         .then(response => {
-        console.log(response);
+            console.log(response);
         })
         .catch(error => {
-        console.error(error);
+            console.error(error);
         });
     }
 
@@ -88,14 +89,27 @@ const RegisterForm = (props) => {
                         <p>Hi {firstName}</p>
                         <h1>Complete your profile</h1>
                         <form className='field' onSubmit={handleSubmit}>
-                            <label>Email</label>
-                            <input type='email' placeholder='Enter your email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <label>Username</label>
+                            <input type='text' placeholder='Enter your username' value={username} onChange={(e) => setUsername(e.target.value)} />
+                            <label>Profile Image
+                                <input type='file' className='file-upload' onChange={(e) => setProfileImage(e.target.files[0])} />
+                            </label>
                             <label>Password</label>
                             <input type='password' placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                            <Button type='submit' className='glass-dark-ash button'>Submit</Button>
+                            <label>Confirm Password</label>
+                            <input type='password' placeholder='Confirm your password' 
+                                onChange={(e) => {
+                                    if (e.target.value == password) {
+                                        setConfirmPassword(e.target.value);
+                                        console.log("Passwords matched");
+                                    }
+                                    else {
+                                        console.log("Passwords do not match");   
+                                    }
+                                }}
+                            />
+                            <Button type='submit' className='glass-dark-ash button'>Register</Button>
                         </form>
-                        <p>Forgot your password? <a href='#'>Reset</a></p>
-                        <p>Don't have an account? <a href='/register'>Register</a></p>
                     </div>
                 </div>
             </div>
