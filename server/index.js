@@ -32,8 +32,8 @@ app.post('/users', profileParser.single('profileImage'), async (req, res) => {
         ...req.body,
         profilePicture: imageUrl, // Add the imageUrl to the user document
     });
-    await user.save();
-    res.send(user);
+    const result = await user.save();
+    res.send(result);
 });
 
 app.get('/users', async (req, res) => {

@@ -3,6 +3,10 @@
 
 * {
     font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .nav {
@@ -104,11 +108,8 @@ a {
 .nav .navCloseBtn {
     display: none;
 }
-
-.login-button{
-    width: 20%;
-    text-decoration: none;
-    color: #ffffff;
+.login{
+    width:fit-content;
 }
 
 .tabs{
