@@ -41,35 +41,36 @@ const App = () => {
 `;
   
   return (
-    <Router>
-      <div className="container1">
-        {!hideNav && <Navbar className="nav-bar"links={[
-          { name: 'Home', to: 'section1' },
-          { name: 'Info', to: 'section2' },
-          { name: 'Tours', to: 'section3' },
-          { name: 'Gallery', to: 'section4' },
-          { name: 'About us', to: 'section5' }
-  
-]} />}
-        <Routes className="container2">
-          <Route path="/" element={
-            <>
-              <Element name="section1" className='Landing section1'>
-                <Landing />
-                <img src={bg} className='main-bg'/>
-              </Element>
-              <Element name="section2" className='Landing section1'>
-              </Element>
-            </>
-          } />
-          <Route path='/login' element={<><AppContainer><AccountBox /></AppContainer><img src={bg} className='main-bg' /></>} />
-          <Route path='/complete' element={<><AppContainer><CompleteProf /></AppContainer><img src={bg} className='main-bg' /></>} />
-          <Route path='/dashboard' element={<><div className='content-window'><Dashboard/></div></>} />
-        </Routes>
-        
+    <AuthProvider>
+      <Router>
+        <div className="container1">
+          {!hideNav && <Navbar className="nav-bar" links={[
+            { name: 'Home', to: 'section1' },
+            { name: 'Info', to: 'section2' },
+            { name: 'Tours', to: 'section3' },
+            { name: 'Gallery', to: 'section4' },
+            { name: 'About us', to: 'section5' }
+          ]} />}
+
+          <Routes className="container2">
+            <Route path="/" element={
+              <>
+                <Element name="section1" className='Landing section1'>
+                  <Landing />
+                  <ImageAnimation/>
+                </Element>
+                <Element name="section2" className='Landing section1'>
+                </Element>
+              </>
+            } />
+            <Route path='/login' element={<><LoginForm /><ImageAnimation/></>}/>
+            <Route path='register' element={<><RegisterForm /><ImageAnimation/></>}/>
+            <Route path='/complete' element={<ImageAnimation/>} />
+            <Route path='/dashboard' element={<><div className='content-window'><Dashboard/></div></>} />
+          </Routes>
       </div>
-      
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 };
 

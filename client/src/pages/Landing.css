@@ -1,4 +1,15 @@
+@font-face {
+    font-family: 'TestSöhneBreit-Dreiviertelfett';
+    src: url(../fonts/TestSöhneBreit-Dreiviertelfett.otf) format('opentype');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 .title{
     height: 100%;
@@ -26,6 +37,7 @@
 }
 
 .main-head{
+    font-family: 'TestSöhneBreit-Dreiviertelfett';
     font-size: 8rem;
     font-weight: 900;
     color: #fffefe;
