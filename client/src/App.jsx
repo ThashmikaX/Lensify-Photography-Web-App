@@ -1,14 +1,10 @@
 import './App.css'
-import { Landing, CompleteProf, Dashboard	 } from './pages'
-import { Navbar } from './components';
+import { Landing, Dashboard, LoginForm, RegisterForm	 } from './pages'
+import { Navbar, ImageAnimation } from './components';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import bg from './assets/images/bg.jpg'
-import styled from "styled-components";
-import AccountBox from "../src/pages/accountBox"
 import { Link, Element } from 'react-scroll';
 import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { AuthProvider } from './auth/Auth';
 
 const App = () => {
   const [lastScrollTop, setLastScrollTop] = useState(0);
@@ -30,15 +26,6 @@ const App = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [lastScrollTop]);
-
-  const AppContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
   
   return (
     <AuthProvider>

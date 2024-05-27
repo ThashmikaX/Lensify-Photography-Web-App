@@ -6,16 +6,6 @@
   box-sizing: border-box;
 }
 
-.main-bg {
-  left: 0px;
-  top: 0px;
-  z-index: -1;
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  object-fit: cover;
-}
-
 .container1 {
   height: 100%;
   width: 100%;
@@ -30,11 +20,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 }
 
 .nav-bar {
   position: fixed;
   z-index: 999;
+  display: flex;
+  flex-direction: row;
 }
 .container2{
   z-index: 0;

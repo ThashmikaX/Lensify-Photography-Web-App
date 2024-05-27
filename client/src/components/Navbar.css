@@ -3,11 +3,17 @@
 
 * {
     font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .nav {
     width: 100%;
     padding: 45px 100px !important;
+    display: flex;
+    flex-direction: row;
 }
 
 .nav-links {
@@ -102,11 +108,8 @@ a {
 .nav .navCloseBtn {
     display: none;
 }
-
 .login{
-    width: 20%;
-    text-decoration: none;
-    color: #ffffff;
+    width:fit-content;
 }
 
 .tabs{
