@@ -1,5 +1,4 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './LoginForm.css'
 import LoginBackground from '../assets/images/login-bg.jpg'
 import { useState } from "react";

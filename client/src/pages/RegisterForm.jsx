@@ -1,5 +1,4 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './RegisterForm.css'
 import LoginBackground from '../assets/images/login-bg.jpg'
 import { Button } from '../components';
