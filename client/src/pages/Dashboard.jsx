@@ -1,8 +1,7 @@
 import React from 'react'
 import './Dashboard.css'
-import dp from '../assets/sudesh.png'
 import { useState } from 'react'
-import { Overview, Analytics, Setting, YourGigs  } from '../components'
+import { Overview, Analytics, Setting, YourGigs, ImageAnimation } from '../components'
 
 
 function Dashboard() {
@@ -15,27 +14,23 @@ function Dashboard() {
 
   return (
     <>
-      <div className='side-navbar'>
-        <div className='profile'>
-          <img src={dp} alt='profile' className='profile-image' />
-          <h3>Sudesh Thashmika</h3>
-        </div>
-        <div className='side-nav-links'>
-          <ul>
+      <div className='side-navbar' >
+          <ul className='side-nav-links'>
             <li className='link' onClick={() => handleLinkClick('Overview')}>Overview</li>
             <li className='link' onClick={() => handleLinkClick('Your Gigs')}>Your Gigs</li>
             <li className='link' onClick={() => handleLinkClick('Analytics')}>Analytics</li>
-            <li className='link divider-li' onClick={() => handleLinkClick('Setting')}>Setting</li>
-            <li className='link' >Logout</li>
+            <li className='link ' onClick={() => handleLinkClick('Setting')}>Setting</li>
+            <li className='link divider-li' >Logout</li>
           </ul>
-        </div>
       </div>
-      <div className='components'>
+      <div className='component-main'><div className='components'>
         {activeLink === 'Overview' && <Overview/>}
         {activeLink === 'Your Gigs' && <YourGigs />}
         {activeLink === 'Analytics' && <Analytics />}
         {activeLink === 'Setting' && <Setting />}
-      </div>
+      </div></div>
+      <div className='bg-black'></div>
+      <div className='bg-image'><ImageAnimation/></div>
     </>
   )
 }
