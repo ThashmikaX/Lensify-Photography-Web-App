@@ -5,7 +5,7 @@ import Axios from 'axios'
 import { useAuth } from '../auth/Auth';
 import noUserIcon from '../assets/user.png'
 
-const ProfileComponent = () => {
+const ProfileComponent = (props) => {
 
   const { auth } = useAuth();
 
@@ -35,14 +35,20 @@ const ProfileComponent = () => {
   } 
 
   return (
-      <div className='profile'>
+  <div className='profile'>
+      <a className='profile-img-link' href='/dashboard'>
         <img src={userImage} alt='profile' className='profile-image' />
-        <div>
+      </a>
+    {props.Name === 'false' ? (
+      <></>
+    ) : (
+      <div>
         <h3 className='user-name'>{ userName }</h3>
-          <p className='user-location'>Matara, Sri Lanka</p>
-        </div>
-    </div>
-  )
+        <p className='user-location'>Matara, Sri Lanka</p>
+      </div>
+    )}
+  </div>
+)
 }
 
 export default ProfileComponent

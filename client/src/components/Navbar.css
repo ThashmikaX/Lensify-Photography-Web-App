@@ -1,8 +1,6 @@
 /* Google Fonts - Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
-
 * {
-    font-family: "Poppins", sans-serif;
+    font-family: test-regular;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,13 +21,13 @@
 .nav {
     justify-content: space-between;
     position: fixed;
-
 }
 
-a {
+.nav a {
     color: #ffffff;
     text-decoration: none;
 }
+
 
 .nav .logo {
     font-size: 22px;

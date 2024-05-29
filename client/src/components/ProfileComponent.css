@@ -28,3 +28,7 @@
     font-family: test-regular;
     font-size: 1rem;
 }
+.profile-img-link{
+    cursor: pointer;
+    width: fit-content;
+}
