@@ -5,14 +5,19 @@ const AuthContext = createContext();
 
 // Create a provider component
 export function AuthProvider({ children }) {
-  const [auth, setAuth] = useState(null);
+  const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')));
 
   const login = (userId) => {
-    // Here you would typically fetch the user data from your API
-    setAuth({ userId });
+    const user = { userId };
+    localStorage.removeItem('auth');
+    localStorage.setItem('auth', JSON.stringify(user));
+    alert('log in success');
+    setAuth(user);
   };
 
   const logout = () => {
+    localStorage.removeItem('auth');
+    alert('logged out');
     setAuth(null);
   };
 

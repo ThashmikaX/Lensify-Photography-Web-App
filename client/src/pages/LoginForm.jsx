@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './LoginForm.css'
 import LoginBackground from '../assets/images/login-bg.jpg'
 import { useState } from "react";
@@ -12,6 +12,11 @@ const LoginForm = () => {
 
     const { login, auth } = useAuth();
 
+    useEffect(() => {
+    if (auth) {
+        console.log('user id ', auth.userId);
+    }}, [auth]);
+
     const handleSubmit = async (event) => {
         console.log('Login button');
         event.preventDefault();
@@ -19,8 +24,7 @@ const LoginForm = () => {
             const response = await axios.post('http://localhost:3000/login', { email, password });
             console.log(response.data.message); // 'Logged in successfully.'
             login(response.data.userId);
-            login(response.data.userId);
-            console.log(auth.userId); // { userId: '60f7b1f3f7e8e6b0b4d3b5b3' }
+            location.replace('/dashboard');
         }
         catch (error) {
             console.error(error);

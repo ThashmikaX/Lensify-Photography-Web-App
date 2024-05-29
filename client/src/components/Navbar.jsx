@@ -3,8 +3,12 @@ import "./Navbar.css";
 import * as React from 'react';
 import Button from "./Button";
 import { Link } from 'react-scroll';
+import ProfileComponent from '../components/ProfileComponent'
+import { useAuth } from '../auth/Auth';
 
 const Navbar = ({ links }) => {
+  const { auth } = useAuth();
+
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -30,10 +34,10 @@ const Navbar = ({ links }) => {
 
       <div className="tabs">
         <ul className="nav-links">
-          <i
+          <li
           className="uil uil-times navCloseBtn"
           onClick={handleNavCloseClick}
-        >close</i>
+        >close</li>
           {links.map((link, index) => (
             <li key={index}>
               <Link to={link.to} smooth={true}>{link.name}</Link>
@@ -42,7 +46,11 @@ const Navbar = ({ links }) => {
         </ul>
       </div>
 
-      <div className="login"><Button className="white login-button" url="/login">Login or Register</Button></div>
+      <div className="login">
+        {!auth && <Button className="white login-button" url="/login">Login or Register</Button>}
+        {auth && < ProfileComponent /> }
+      </div>
+      
 
     </nav>
   );

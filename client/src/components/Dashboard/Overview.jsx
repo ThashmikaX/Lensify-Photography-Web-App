@@ -1,11 +1,12 @@
 import React from 'react'
 import ProfileComponent from '../ProfileComponent'
+import './Overview.css'
 
 const Overview = () => {
   return (
-      <div>
-      <h1>Overview</h1>
-      <ProfileComponent/>
+      <div className='overview'>
+      <h1 className='headline'>Overview</h1>
+      <ProfileComponent></ProfileComponent>
       
     </div>
   )

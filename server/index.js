@@ -45,12 +45,12 @@ app.post('/login', async (req, res) => {
     // Find user by email
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-        return res.status(400).send('Invalid email or password.');
+        return res.status(400).send('Invalid email.');
     }
 
     // Check password
     if (req.body.password !== user.password) {
-        return res.status(400).send('Invalid email or password.');
+        return res.status(400).send('Invalid password.');
     }
 
     res.send({ message: 'Logged in successfully.', userId: user._id });
@@ -65,6 +65,11 @@ app.post('/portfolio', portfolioParser.array('image', 3), async (req, res) => {
     });
     const result = await portfolio.save();
     res.send({ result, message: "Portfolio data saved!" });
+})
+
+app.get('/userprofile', async (req, res) => {
+    const respond = await User.findById(req.query.id, 'firstName lastName profilePicture').exec();
+    res.send({ respond, message: "data get done" });
 })
 
 // Start the server
