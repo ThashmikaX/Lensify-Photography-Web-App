@@ -10,7 +10,7 @@ const ProfileComponent = (props) => {
   const { auth } = useAuth();
 
   const[userImage, setUserImage] = useState(noUserIcon);
-  const [userName, setUserName] = useState('No User')
+  const [userName, setUserName] = useState('Loading...');
   
   getUserProfile();
 

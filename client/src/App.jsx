@@ -1,35 +1,24 @@
 import './App.css'
 import { Landing, Dashboard, LoginForm, RegisterForm	 } from './pages'
 import { Navbar, ImageAnimation } from './components';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import { Link, Element } from 'react-scroll';
 import React, { useState, useEffect } from 'react';
 import { AuthProvider } from './auth/Auth';
 
-const App = () => {
-  const [lastScrollTop, setLastScrollTop] = useState(0);
+const Main = () => {
   const [hideNav, setHideNav] = useState(false);
 
+  const location = useLocation();
   useEffect(() => {
-    const handleScroll = () => {
-      let st = window.pageYOffset || document.documentElement.scrollTop;
-      if (st > lastScrollTop){
-        setHideNav(true);
-      } else {
-        setHideNav(false);
-      }
-      setLastScrollTop(st <= 0 ? 0 : st);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollTop]);
+    if (location.pathname === '/dashboard') {
+      setHideNav(true);
+    } else {
+      setHideNav(false);
+    }
+  }, [location]);
   
   return (
-    <AuthProvider>
-      <Router>
         <div className="container1">
           {!hideNav && <Navbar className="nav-bar" links={[
             { name: 'Home', to: 'section1' },
@@ -56,6 +45,33 @@ const App = () => {
             <Route path='/dashboard' element={<><div className='content-window'><Dashboard/></div></>} />
           </Routes>
       </div>
+  );
+};
+
+const App = () => {
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      let st = window.pageYOffset || document.documentElement.scrollTop;
+      if (st > lastScrollTop){
+        setHideNav(true);
+      } else {
+        setHideNav(false);
+      }
+      setLastScrollTop(st <= 0 ? 0 : st);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollTop]);
+
+  return (
+    <AuthProvider>
+      <Router>
+        <Main />
       </Router>
     </AuthProvider>
   );

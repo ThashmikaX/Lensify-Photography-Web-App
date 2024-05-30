@@ -11,13 +11,8 @@
 
 .profile{
     display: flex;
-    margin-right: 1rem;
-    position:absolute;
-    right: 0px;
-    top: 0px;
+    position:relative;
     width: fit-content;
-    margin-right: 2rem;
-    margin-top: 2rem;
 }
 
 .user-name{

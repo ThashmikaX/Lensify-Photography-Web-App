@@ -18,6 +18,7 @@ function Dashboard() {
     <>
       <div className='side-navbar' >
         <div className='side-nav-links'>
+          <a href='/' className='lensity-logo'>Lensify</a>
           <ul >
             <Button className='dash btn-dashboard' onClick={() => handleLinkClick('Overview')}>Overview</Button>
             <Button className='dash btn-dashboard' onClick={() => handleLinkClick('Projects')}>Projects</Button>
