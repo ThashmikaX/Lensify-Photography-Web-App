@@ -1,0 +1,19 @@
+.card{
+    position: relative;
+    width: 100%;
+    border: 1rem;
+    border-color: black;
+    border-radius: 24px;
+    background-color: rgb(255, 255, 255);
+    flex: 1;
+    box-shadow:1rem;
+
+    h1{
+        margin-top: 1rem;
+    }
+
+    p{
+        font-size: 5rem;
+        padding: 0;
+    }
+}

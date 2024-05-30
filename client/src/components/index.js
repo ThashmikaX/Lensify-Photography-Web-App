@@ -8,5 +8,6 @@ import Setting from "./Dashboard/Setting"
 import ImageAnimation from "./ImageAnimation"
 import ProfileComponent from "./ProfileComponent"
 import Profile from "./Dashboard/Profile"
+import Card from './Card'
 
-export { Navbar, Button, Overview, Projects, Analytics, Setting, ImageAnimation, ProfileComponent, Profile }
+export { Navbar, Button, Overview, Projects, Analytics, Setting, ImageAnimation, ProfileComponent, Profile, Card }
