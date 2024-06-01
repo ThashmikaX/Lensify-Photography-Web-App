@@ -1,5 +1,5 @@
 import React from 'react'
-import {ProfileComponent, Card} from '../../components'
+import { ProfileComponent, Card, Button, ImageAnimation, ProjectOverview } from '../../components'
 
 import './Overview.css'
 
@@ -7,7 +7,7 @@ const Overview = () => {
   return (
     <div className='overview'>
       <div className='overview-header'>
-        <h1 className='headline'>Overview</h1>
+        <h1 className='headline'>Projects</h1>
         <ProfileComponent></ProfileComponent>
       </div>
       <div className='overview-content'>
@@ -26,7 +26,7 @@ const Overview = () => {
           </Card>
         </div>
         <div className='overview-column-two'>
-          <Card>Card 4</Card>
+          <ProjectOverview button='false'></ProjectOverview>
         </div>
       </div>
     </div>

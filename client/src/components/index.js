@@ -9,5 +9,6 @@ import ImageAnimation from "./ImageAnimation"
 import ProfileComponent from "./ProfileComponent"
 import Profile from "./Dashboard/Profile"
 import Card from './Card'
+import ProjectOverview from "./Dashboard/ProjectOverview"
 
-export { Navbar, Button, Overview, Projects, Analytics, Setting, ImageAnimation, ProfileComponent, Profile, Card }
+export { Navbar, Button, Overview, Projects, Analytics, Setting, ImageAnimation, ProfileComponent, Profile, Card, ProjectOverview }
