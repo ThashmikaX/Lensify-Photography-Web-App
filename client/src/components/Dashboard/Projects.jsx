@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import {ProfileComponent, Card, ProjectOverview} from '../../components'
+import {ProfileComponent, Card, ProjectOverview, CreateProjectForm} from '../../components'
 
 const YourGigs = (props) => {
-  const [state, setState] = useState(true);
+  const [state, setState] = useState(false);
 
   if (!state) {
     return (
@@ -34,8 +34,7 @@ const YourGigs = (props) => {
       <div className='overview-content'>
         <div className='overview-column-one'>
           <Card style={{ padding: '2rem' }}>
-            <h1>Followers</h1>
-            <p>80</p>
+            <CreateProjectForm/>
           </Card>
         </div>
         <div className='overview-column-two'>
