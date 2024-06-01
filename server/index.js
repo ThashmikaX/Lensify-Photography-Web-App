@@ -1,17 +1,17 @@
 const express = require('express'); //import express to create the server
-const app = express();
-
 const mongoose = require('mongoose');
 const cors = require('cors');
-
 const chalk = require('chalk'); //Use for print color messages on console
+const dotenv = require('dotenv');
+
+const app = express();
+dotenv.config();
 
 const { profileParser, portfolioParser } = require('./cloudinaryConfig'); // Import the parser middleware
-
 const { userSchema, portfolioSchema } = require('./models'); //Import database models
 
 // Connect to MongoDB
-mongoose.connect("mongodb+srv://thashmikax:gBUooOKJm5KUUfqv@cluster0.mvsueol.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+mongoose.connect(process.env.URL);
 mongoose.connection.once('open', function () {
     console.log(chalk.green("Database connection established succesfully!"));
 });
