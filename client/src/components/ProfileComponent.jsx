@@ -14,11 +14,11 @@ const ProfileComponent = (props) => {
   
   getUserProfile();
 
-  console.log('auth id', auth.userId);
-  console.log(userName);
+  // console.log('auth id', auth.userId);
+  // console.log(userName);
 
   async function getUserProfile() {
-    console.log("function called");
+    // console.log("function called");
     try {
       const response = await Axios.get('http://localhost:3000/userprofile', {
         params: {
@@ -27,7 +27,7 @@ const ProfileComponent = (props) => {
       })
       setUserImage(response.data.respond.profilePicture);
       setUserName(`${response.data.respond.firstName} ${response.data.respond.lastName}`);
-      console.log('profile set success');
+      // console.log('profile set success');
     }
     catch (error) {
       console.log(error);

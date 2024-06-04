@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import {ProfileComponent, Card, ProjectOverview, CreateProjectForm} from '../../components'
 
 const YourGigs = (props) => {
-  const [state, setState] = useState(false);
+  const [state, setState] = useState(true);
 
   if (!state) {
     return (
       <div className='overview'>
       <div className='overview-header'>
-        <h1 className='headline'>Overview</h1>
+        <h1 className='headline'>Projects</h1>
         <ProfileComponent></ProfileComponent>
       </div>
       <div className='overview-content'>

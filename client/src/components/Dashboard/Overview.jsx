@@ -7,7 +7,7 @@ const Overview = () => {
   return (
     <div className='overview'>
       <div className='overview-header'>
-        <h1 className='headline'>Projects</h1>
+        <h1 className='headline'>Overview</h1>
         <ProfileComponent></ProfileComponent>
       </div>
       <div className='overview-content'>
