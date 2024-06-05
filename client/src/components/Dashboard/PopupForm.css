@@ -1,0 +1,87 @@
+.dialog-form {
+    background: #ffffff;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    margin: auto;
+    border-radius: 10px;
+    border-style: none;
+    font-size: 20px;
+    width: 30%;
+}
+
+.field {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    label {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    input {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #333;
+        transition: 0.5;
+    }
+
+    .buttons{
+        display: flex;
+        margin-top: 1rem;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .space {
+        width: 10%;
+    }
+
+    select {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+    }
+
+    select:focus {
+        outline: none;
+        border-color: #333;
+        transition: 0.5;
+    }
+
+    select:hover {
+        border-color: #333;
+        transition: 0.5;
+    }
+
+    .file-upload {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+    }
+
+    .file-upload:focus {
+        outline: none;
+        border-color: #333;
+        transition: 0.5;
+    }
+
+    .file-upload:hover {
+        border-color: #333;
+        transition: 0.5;
+    }
+
+
+}
