@@ -8,16 +8,16 @@
     border-style: none;
     font-size: 20px;
     width: 30%;
-}
 
+    
+}
 .field {
     width: 100%;
     margin-bottom: 1rem;
 
     label {
         font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-        margin-top: 0.5rem;
+        margin-top: 1rem;
     }
 
     input {
@@ -26,6 +26,8 @@
         font-size: 1rem;
         border: 1px solid #ccc;
         border-radius: 20px;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
     }
 
     input:focus {
@@ -51,6 +53,8 @@
         font-size: 1rem;
         border: 1px solid #ccc;
         border-radius: 20px;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
     }
 
     select:focus {
@@ -82,6 +86,56 @@
         border-color: #333;
         transition: 0.5;
     }
+}
 
+dialog {
+    animation: fade-out 0.1s ease-out;
+}
 
+dialog[open] {
+    animation: fade-in 0.1s ease-out;
+}
+
+dialog[open]::backdrop {
+    animation: backdrop-fade-in 0.1s ease-out forwards;
+}
+
+/* Animation keyframes */
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: scaleY(0);
+        display: none;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+        display: block;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        transform: scaleY(1);
+        display: block;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scaleY(0);
+        display: none;
+    }
+}
+
+@keyframes backdrop-fade-in {
+    0% {
+        background-color: rgb(0 0 0 / 0%);
+    }
+
+    100% {
+        background-color: rgb(0 0 0 / 85%);
+    }
 }

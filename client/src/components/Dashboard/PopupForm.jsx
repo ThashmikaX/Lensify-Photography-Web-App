@@ -55,7 +55,6 @@ function PopupForm({ onSubmit, isOpen, onClose }) {
 
   useEffect(() => {
     const dialogElement = dialogRef.current;
-
     const handleCancel = () => {
       if (onClose) {
         onClose();
@@ -83,9 +82,9 @@ function PopupForm({ onSubmit, isOpen, onClose }) {
     <dialog ref={dialogRef} data-modal className="dialog-form">
       <form className='field' onSubmit={handleSubmit}>
         <label>Project Name</label>
-        <input type='text' placeholder='Enter your first name' value={projectTitle} onChange={(e) => setProjectTitle(e.target.value)} />
+        <input type='text' placeholder='Ex: Yala Safari' value={projectTitle} onChange={(e) => setProjectTitle(e.target.value)} />
         <label>Project Description</label>
-        <input type='text' placeholder='Enter your last name' value={projectDes} onChange={(e) => setProjectDes(e.target.value)} />
+        <input type='text' placeholder='' value={projectDes} onChange={(e) => setProjectDes(e.target.value)} />
         <label>Catagory</label>
         <select value={role} onChange={(e) => setRole(e.target.value)}>
             <option value='photographer'>Wedding</option>

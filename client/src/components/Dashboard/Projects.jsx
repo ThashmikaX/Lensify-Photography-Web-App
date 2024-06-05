@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
-import {ProfileComponent, Card, ProjectOverview, PopupForm} from '../../components'
+import React from 'react'
+import {ProfileComponent, Card, ProjectOverview} from '../../components'
 
-const YourGigs = () => {
+const Projects = () => {
   return (
-    <>
     <div className='overview'>
       <div className='overview-header'>
         <h1 className='headline'>Projects</h1>
@@ -21,8 +20,7 @@ const YourGigs = () => {
         </div>
       </div>
       </div>
-      </>
   )
 }
 
-export default YourGigs
+export default Projects
