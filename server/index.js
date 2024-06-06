@@ -70,7 +70,17 @@ app.post('/portfolio', portfolioParser.array('image', 3), async (req, res) => {
 app.get('/userprofile', async (req, res) => {
     const respond = await User.findById(req.query.id, 'firstName lastName profilePicture').exec();
     res.send({ respond, message: "data get done" });
-})
+});
+
+app.get('/userprojects', async (req, res) => {
+    const respond = await Portfolio.find({ userId: req.query.id }).exec();
+    res.send(respond);
+});
+
+app.get('/allprojects', async (req, res) => {
+    const respond = await Portfolio.find().exec();
+    res.send(respond);
+});
 
 // Start the server
 app.listen(3000, () => console.log('Server is running on port 3000'));
