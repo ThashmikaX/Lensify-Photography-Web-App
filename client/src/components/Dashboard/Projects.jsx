@@ -3,10 +3,12 @@ import { ProfileComponent, Card, ProjectOverview } from '../../components'
 import { useAuth } from '../../auth/Auth';
 import axios from 'axios';
 import './Projects.css'
+import { useHistory } from 'react-router-dom';
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const { auth } = useAuth();
+  const history = useHistory();
 
   useEffect(() => {
     axios.get('http://localhost:3000/userprojects', {
@@ -21,6 +23,25 @@ const Projects = () => {
         console.log('Error in fetching projects', error);
       });
   }, []);
+
+  const handleEdit = (id) => {
+    // Navigate to the edit page with the project id
+    // This assumes you have a route set up for editing projects
+    // Replace '/edit-project' with your actual edit project route
+    history.push(`/edit-project/${id}`);
+  }
+
+  const handleDelete = (id) => {
+    // Make an API call to delete the project
+    axios.delete(`/api/projects/${id}`)
+      .then(response => {
+        // Remove the deleted project from the state
+        setProjects(projects.filter(project => project._id !== id));
+      })
+      .catch(error => {
+        console.log('Error in deleting project', error);
+      });
+  }
 
   return (
     <div className='overview'>
@@ -39,6 +60,8 @@ const Projects = () => {
                 {project.images.map((image, index) => (
                   <img src={image} alt={`Project ${project.title} image ${index + 1}`} key={index} />
                 ))}
+                <button onClick={() => handleEdit(project._id)}>Edit</button>
+                <button onClick={() => handleDelete(project._id)}>Delete</button>
               </Card>
             ))}
           </Card>
@@ -51,4 +74,4 @@ const Projects = () => {
   )
 }
 
-export default Projects
+export default withRouter(Projects);
