@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { ProfileComponent, Card, ProjectOverview } from '../../components'
+import { ProfileComponent, Card, ProjectOverview, ProjectEditForm } from '../../components'
 import { useAuth } from '../../auth/Auth';
 import axios from 'axios';
 import './Projects.css'
-import { useHistory } from 'react-router-dom';
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const { auth } = useAuth();
-  const history = useHistory();
+  const [isEditProjectOpen, setIsEditProjectOpen] = useState(false);
+  const [projectId, setProjectId] = useState(null);
 
   useEffect(() => {
     axios.get('http://localhost:3000/userprojects', {
@@ -25,10 +25,8 @@ const Projects = () => {
   }, []);
 
   const handleEdit = (id) => {
-    // Navigate to the edit page with the project id
-    // This assumes you have a route set up for editing projects
-    // Replace '/edit-project' with your actual edit project route
-    history.push(`/edit-project/${id}`);
+    setIsEditProjectOpen(true);
+    setProjectId(id);
   }
 
   const handleDelete = (id) => {
@@ -44,6 +42,8 @@ const Projects = () => {
   }
 
   return (
+    <>
+    <ProjectEditForm isOpen={isEditProjectOpen} onClose={() => setIsEditProjectOpen(false)} id={projectId}/>
     <div className='overview'>
       <div className='overview-header'>
         <h1 className='headline'>Projects</h1>
@@ -60,7 +60,7 @@ const Projects = () => {
                 {project.images.map((image, index) => (
                   <img src={image} alt={`Project ${project.title} image ${index + 1}`} key={index} />
                 ))}
-                <button onClick={() => handleEdit(project._id)}>Edit</button>
+                <button onClick={() => { handleEdit(project._id); }}>Edit</button>
                 <button onClick={() => handleDelete(project._id)}>Delete</button>
               </Card>
             ))}
@@ -71,7 +71,8 @@ const Projects = () => {
         </div>
       </div>
       </div>
+      </>
   )
 }
 
-export default withRouter(Projects);
+export default Projects;

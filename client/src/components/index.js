@@ -11,5 +11,6 @@ import Profile from "./Dashboard/Profile"
 import Card from './Card'
 import ProjectOverview from "./Dashboard/ProjectOverview"
 import PopupForm from './Dashboard/PopupForm'
+import ProjectEditForm from "./Dashboard/ProjectEditForm"
 
-export { Navbar, Button, Overview, Projects, Analytics, Setting, ImageAnimation, ProfileComponent, Profile, Card, ProjectOverview, PopupForm }
+export { Navbar, Button, Overview, Projects, Analytics, Setting, ImageAnimation, ProfileComponent, Profile, Card, ProjectOverview, PopupForm, ProjectEditForm }
