@@ -1,15 +1,16 @@
 const multer = require('multer');
 const path = require('path'); //get the extension of the original file and return that as the format
-
-
+const dotenv = require('dotenv');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const cloudinary = require('cloudinary').v2;
 
+dotenv.config();
+
 // Configure Cloudinary
 cloudinary.config({
-    cloud_name: 'dwv18r4b5',
-    api_key: '959979693422453',
-    api_secret: 'pWW2KwStkCVCQzyB6MfZ3ZBOcos',
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET,
 });
 
 const profileStorage = new CloudinaryStorage({
