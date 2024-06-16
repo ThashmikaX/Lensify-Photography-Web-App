@@ -1,54 +1,70 @@
 import React, { useRef, useState, useEffect } from "react";
 import "./PopupForm.css";
-import { useAuth } from '../../auth/Auth';
-import Axios from 'axios';
+import axios from 'axios';
 import Button from "../Button";
 
-function ProjectEditForm({ onSubmit, isOpen, onClose, id }) {
-    const dialogRef = useRef();
-    const { auth } = useAuth();
+function ProjectEditForm({ isOpen, onClose, project_Id }) {
+  const dialogRef = useRef();
+  const [project, setProject] = useState({
+    _id: '',
+    userId: '',
+    title: '',
+    description: '',
+    category: ''
+});
 
-    const [projectTitle, setProjectTitle] = useState("");
-    const [projectDes, setProjectDes] = useState("");
-    const [role, setRole] = useState("photographer");
-    const [projectImages, setProjectImages] = useState(null);
-    const [project, setProject] = useState(null);
+  const handleEditFormSubmit = (event) => {
+    event.preventDefault();
 
-    const handleEditFormSubmit = (event) => {
-        event.preventDefault();
-        console.log("Register Clicked");
+    // Make an API call to update the project
+    axios.put(`http://localhost:3000/userprojects/${props.match.params.id}`, project)
+      .then(response => {
+        console.log("Project edit done");
+      })
+      .catch(error => {
+        console.log('Error in updating project', error);
+      });
+  }
 
-        // Create a FormData object
-        const formData = new FormData();
+  useEffect(() => {
+    // console.log("ëdit pop up form", project_Id);
+    // axios.get('http://localhost:3000/getprojectbyid', {
+    //   params: {
+    //     id: project_Id
+    //   }
+    // })
+    //   .then(response => {
+    //     setProject(response.data);
+    //   })
+    //   .catch(error => {
+    //     console.log('Error in fetching project', error);
+    //   });
+  }, []);
+  
 
-        // Append the form fields to the FormData object
-        formData.append('userId', auth.userId);
-        formData.append('title', projectTitle);
-        formData.append('description', projectDes);
-        formData.append('category', role);
-
-        for (let i = 0; i < projectImages.length; i++) {
-            formData.append('image', projectImages[i]);
-        }
-
-        // Send the request
-        Axios.post('http://localhost:3000/portfolio', formData, {
-            headers: {
-            'Content-Type': 'multipart/form-data',
-            },
-        })
-        .then(response => {
-            console.log(response);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    }
+  
+  const handleChange = (e) => {
+    const { name, value, type, files } = e.target;
+    console.log(name);
+  if (type === 'file') {
+    // Assuming `project.images` is meant to store FileList
+    setProject({ ...project, images: files });
+  } else {
+    setProject({ ...project, [name]: value });
+  }
+};
 
     useEffect(() => {
+  if (isOpen) {
+    if (dialogRef.current) dialogRef.current.showModal();
+  } else if (dialogRef.current && dialogRef.current.open) {
+    dialogRef.current.close();
+      }
+
+      console.log("ëdit pop up form", project_Id);
     axios.get('http://localhost:3000/getprojectbyid', {
       params: {
-        id: id
+        id: project_Id
       }
     })
       .then(response => {
@@ -57,15 +73,7 @@ function ProjectEditForm({ onSubmit, isOpen, onClose, id }) {
       .catch(error => {
         console.log('Error in fetching project', error);
       });
-  }, []);
-
-    useEffect(() => {
-        if (isOpen) {
-        dialogRef.current.showModal();
-        } else if (dialogRef.current.open) {
-        dialogRef.current.close();
-        }
-    }, [isOpen]);
+}, [isOpen]);
 
     useEffect(() => {
         const dialogElement = dialogRef.current;
@@ -90,24 +98,28 @@ function ProjectEditForm({ onSubmit, isOpen, onClose, id }) {
         if (onClose) {
         onClose();
         }
-    };
+  };
+  
+  // if (!project) {
+  //   return <div>Loading...</div>
+  // }
 
   return (
     <dialog ref={dialogRef} data-modal className="dialog-form">
       <form className='field' onSubmit={handleEditFormSubmit}>
         <label>Project Name</label>
-        <input type='text' placeholder='Ex: Yala Safari' value={project.title} onChange={(e) => setProjectTitle(e.target.value)} />
+        <input type='text' name='title' placeholder='Ex: Yala Safari' value={project.title} onChange={handleChange}  />
         <label>Project Description</label>
-        <input type='text' placeholder='' value={project.description} onChange={(e) => setProjectDes(e.target.value)} />
+        <input type='text' name='description' placeholder='' value={project.description} onChange={handleChange} />
         <label>Catagory</label>
-        <select value={project.category} onChange={(e) => setRole(e.target.value)}>
+        <select name='category' value={project.category} onChange={handleChange}>
             <option value='photographer'>Wedding</option>
             <option value='client'>Birthday</option>
             <option value='admin'>Wildlife</option>
         </select>
-        <label>Profile Image
-            <input value={project.images} multiple accept="image/*,video/*" type='file' className='file-upload' onChange={(e) => setProjectImages(e.target.files)} />
-        </label>
+        {/* <label>Profile Image
+            <input name='images'  value={project.images} multiple accept="image/*,video/*" type='file' className='file-upload' onChange={handleChange} />
+        </label> */}
         <div className="buttons">
           <Button type="button" onClick={closeDialog} className="white button">
             Cancel

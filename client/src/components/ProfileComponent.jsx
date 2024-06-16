@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import dp from '../assets/sudesh.png'
 import './ProfileComponent.css'
-import Axios from 'axios'
+import axios from 'axios'
 import { useAuth } from '../auth/Auth';
 import noUserIcon from '../assets/user.png'
 
 const ProfileComponent = (props) => {
-
   const { auth } = useAuth();
-
   const[userImage, setUserImage] = useState(noUserIcon);
   const [userName, setUserName] = useState('Loading...');
   
   getUserProfile();
 
-  // console.log('auth id', auth.userId);
-  // console.log(userName);
-
   async function getUserProfile() {
     // console.log("function called");
     try {
-      const response = await Axios.get('http://localhost:3000/userprofile', {
+      const response = await axios.get('http://localhost:3000/userprofile', {
         params: {
           id : auth.userId
         }
@@ -32,7 +26,7 @@ const ProfileComponent = (props) => {
     catch (error) {
       console.log(error);
     }
-  } 
+  }
 
   return (
   <div className='profile'>

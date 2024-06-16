@@ -18,8 +18,7 @@ const saveProject = async (req, res) => {
 
 const getProjectsByUserId = async (req, res) => {
     const result = await Portfolio.find({ userId: req.query.id }).exec();
-    res.send({ result, message: "Portfolio data recived!" });
-
+    res.send(result);
 }
 
 const getAllProject = async (req, res) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProfileComponent, Card, Button, ImageAnimation, ProjectOverview } from '../../components'
+import { ProfileComponent, Card, ProjectOverview } from '../../components'
 
 import './Overview.css'
 

@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import "./PopupForm.css";
 import { useAuth } from '../../auth/Auth';
-import Axios from 'axios';
+import axios from 'axios';
 import Button from "../Button";
 
 function PopupForm({ onSubmit, isOpen, onClose }) {
@@ -32,7 +32,7 @@ function PopupForm({ onSubmit, isOpen, onClose }) {
         }
 
         // Send the request
-        Axios.post('http://localhost:3000/portfolio', formData, {
+        axios.post('http://localhost:3000/portfolio', formData, {
             headers: {
             'Content-Type': 'multipart/form-data',
             },

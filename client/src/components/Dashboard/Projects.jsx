@@ -5,10 +5,12 @@ import axios from 'axios';
 import './Projects.css'
 
 const Projects = () => {
-  const [projects, setProjects] = useState([]);
+  const [userprojects, setProjects] = useState([]);
   const { auth } = useAuth();
   const [isEditProjectOpen, setIsEditProjectOpen] = useState(false);
   const [projectId, setProjectId] = useState(null);
+
+  console.log(auth.userId);
 
   useEffect(() => {
     axios.get('http://localhost:3000/userprojects', {
@@ -17,16 +19,20 @@ const Projects = () => {
       }
     })
       .then(response => {
-        setProjects(response.data);
-      })
+      // Check if response.data is an array, if not, make it an array
+      const projectsData = Array.isArray(response.data) ? response.data : [response.data];
+      setProjects(projectsData);
+    })
       .catch(error => {
         console.log('Error in fetching projects', error);
       });
   }, []);
 
-  const handleEdit = (id) => {
+  const handleEdit = () => {
     setIsEditProjectOpen(true);
-    setProjectId(id);
+    console.log('project id ', projectId);
+    console.log("handle edit called", projectId);
+
   }
 
   const handleDelete = (id) => {
@@ -34,7 +40,7 @@ const Projects = () => {
     axios.delete(`/api/projects/${id}`)
       .then(response => {
         // Remove the deleted project from the state
-        setProjects(projects.filter(project => project._id !== id));
+        setProjects(userprojects.filter(project => project._id !== id));
       })
       .catch(error => {
         console.log('Error in deleting project', error);
@@ -43,7 +49,7 @@ const Projects = () => {
 
   return (
     <>
-    <ProjectEditForm isOpen={isEditProjectOpen} onClose={() => setIsEditProjectOpen(false)} id={projectId}/>
+    <ProjectEditForm isOpen={isEditProjectOpen} onClose={() => setIsEditProjectOpen(false)} project_Id={projectId}/>
     <div className='overview'>
       <div className='overview-header'>
         <h1 className='headline'>Projects</h1>
@@ -52,19 +58,22 @@ const Projects = () => {
       <div className='overview-content'>
         <div className='overview-column-one'>
           <Card className='user-project-list' style={{ padding: '2rem' }}>
-            {projects.map(project => (
-              <Card className='user-project' key={project._id}>
-                <h2>{project.title}</h2>
-                <p>{project.description}</p>
-                <p>Category: {project.category}</p>
-                {project.images.map((image, index) => (
-                  <img src={image} alt={`Project ${project.title} image ${index + 1}`} key={index} />
-                ))}
-                <button onClick={() => { handleEdit(project._id); }}>Edit</button>
-                <button onClick={() => handleDelete(project._id)}>Delete</button>
-              </Card>
-            ))}
-          </Card>
+  {userprojects.map(project => (
+    <Card className='user-project' key={project._id}>
+      <h2>{project.title}</h2>
+      <p>{project.description}</p>
+      <p>Category: {project.category}</p>
+      {project.images.map((image, index) => (
+        <img src={image} alt={`Project ${project.title} image ${index + 1}`} key={index} />
+      ))}
+      <button onClick={() => {
+        setProjectId(project._id);
+        handleEdit();
+      }}>Edit</button>
+      <button onClick={() => handleDelete(project._id)}>Delete</button>
+    </Card>
+  ))}
+</Card>
         </div>
         <div className='overview-column-two'>
             <ProjectOverview button='true'></ProjectOverview>
