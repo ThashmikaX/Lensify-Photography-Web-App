@@ -1,3 +1,4 @@
+const { portfolioParser } = require("../cloudinaryConfig");
 const { Portfolio } = require("../models")
 
 const getProjectById = async (req, res) => {
@@ -46,10 +47,26 @@ const editProject = async (req, res) => {
     }
 };
 
+const deleteProject = async (req, res) => {
+    const projectId = req.query.id;
+    
+    try {
+        const deletedProject = await Portfolio.findByIdAndDelete(projectId).exec();
+        if (!deletedProject) {
+            return res.status(404).send({ message: "Project not found" });
+        }
+
+        res.status(200).send({ message: "Project deleted successfully" });
+    } catch (error) {
+        res.status(500).send({ message: "Error deleting project", error: error.message });
+    }
+}
+
 module.exports = {
     getProjectById,
     saveProject,
     getProjectsByUserId,
     getAllProject,
     editProject,
+    deleteProject,
 }
