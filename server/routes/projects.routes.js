@@ -13,5 +13,7 @@ router.get('/getprojectbyid', projectController.getProjectById);
 router.post('/portfolio', portfolioParser.array('image', 3), projectController.saveProject);
 router.get('/userprojects', projectController.getProjectsByUserId);
 router.get('/allprojects', projectController.getAllProject);
+router.put('/updateproject', portfolioParser.array('image', 3), projectController.editProject)
+
 
 module.exports = router;

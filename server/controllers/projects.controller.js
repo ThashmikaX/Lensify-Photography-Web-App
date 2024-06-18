@@ -26,6 +26,30 @@ const getAllProject = async (req, res) => {
     res.send(respond);
 }
 
+const editProject = async (req, res) => {
+    const projectId = req.query.id;
+    const updatedData = req.body;
+
+    if (req.files && req.files.length > 0) {
+        const imagesArray = req.files.map(file => file.path);
+        updatedData.images = imagesArray;
+    }
+
+    try {
+        const updatedProject = await Portfolio.findByIdAndUpdate(projectId, updatedData, { new: true }).exec();
+        if (!updatedProject) {
+            return res.status(400).send({ message: "Project not found" });
+        }
+        res.send({ updatedProject, message: "Project updated" });
+    } catch (error) {
+        res.status(500).send({ message: "Error updating project", error: error.message });
+    }
+};
+
 module.exports = {
-    getProjectById, saveProject, getProjectsByUserId, getAllProject
+    getProjectById,
+    saveProject,
+    getProjectsByUserId,
+    getAllProject,
+    editProject,
 }
