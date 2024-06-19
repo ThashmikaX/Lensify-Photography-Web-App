@@ -5,6 +5,7 @@ import { useAuth } from '../auth/Auth';
 import noUserIcon from '../assets/user.png'
 
 const ProfileComponent = (props) => {
+  const rooturl = import.meta.env.VITE_BACKEND_API;
   const { auth } = useAuth();
   const[userImage, setUserImage] = useState(noUserIcon);
   const [userName, setUserName] = useState('Loading...');
@@ -14,7 +15,7 @@ const ProfileComponent = (props) => {
   async function getUserProfile() {
     // console.log("function called");
     try {
-      const response = await axios.get('http://localhost:3000/userprofile', {
+      const response = await axios.get(`${rooturl}/userprofile`, {
         params: {
           id : auth.userId
         }

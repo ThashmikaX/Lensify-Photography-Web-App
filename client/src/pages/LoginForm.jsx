@@ -7,6 +7,7 @@ import { useAuth } from '../auth/Auth';
 import { Button } from '../components';
 
 const LoginForm = () => {
+    const rooturl = import.meta.env.VITE_BACKEND_API;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -21,7 +22,7 @@ const LoginForm = () => {
         console.log('Login button');
         event.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/login', { email, password });
+            const response = await axios.post(`${rooturl}/login`, { email, password });
             console.log(response.data.message); // 'Logged in successfully.'
             login(response.data.userId);
             location.replace('/dashboard');
