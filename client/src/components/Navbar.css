@@ -1,4 +1,14 @@
 /* Google Fonts - Poppins */
+@font-face {
+    font-family: 'test-bold';
+    src: url(../fonts/TestSöhneBreit-Dreiviertelfett.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'test-regular';
+    src: url(../fonts/TESTSÖHNEBREIT-LEICHT.otf) format('opentype');
+}
+
 * {
     font-family: test-regular;
     margin: 0;
@@ -12,6 +22,7 @@
     padding: 45px 100px !important;
     display: flex;
     flex-direction: row;
+    background: linear-gradient(0deg, rgba(2, 0, 36, 0) 0%, rgba(0, 0, 0, 1) 150%);
 }
 
 .nav-links {
@@ -26,6 +37,24 @@
 .nav a {
     color: #ffffff;
     text-decoration: none;
+}
+
+.nav .login a {
+    color: #ffffff;
+    text-decoration: none;
+    font-style: test-bold;
+    transition: all 0.2s linear;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+}
+
+.nav .login a:hover {
+    color: #000000;
+    background-color: #ffffff;
+    border-radius: 100px;
+    cursor: pointer;
+
+
 }
 
 
