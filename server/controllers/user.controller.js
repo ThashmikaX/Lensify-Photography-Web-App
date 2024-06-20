@@ -1,13 +1,19 @@
 const { User } = require("../models")
 
 const saveUser = async (req, res) => {
-    const imageUrl = req.file.path;
-    const user = new User({
-        ...req.body,
-        profilePicture: imageUrl, // Add the imageUrl to the user document
-    });
-    const result = await user.save();
-    res.send(result);
+    try {
+        const imageUrl = req.file.path;
+        const user = new User({
+            ...req.body,
+            profilePicture: imageUrl, // Add the imageUrl to the user document
+        });
+        const result = await user.save();
+        // Send a 201 Created status code and the saved user object
+        res.status(201).json(result);
+    } catch (error) {
+        // Send a 500 Internal Server Error status code if an error occurs
+        res.status(500).json({ message: error.message });
+    }
 }
 
 const verifyUser = async (req, res) => {

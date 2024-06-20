@@ -6,12 +6,12 @@ import Button from "../Button";
 
 function PopupForm({ onSubmit, isOpen, onClose }) {
   const dialogRef = useRef();
-
+  const rooturl = import.meta.env.VITE_BACKEND_API;
   const { auth } = useAuth();
 
     const [projectTitle, setProjectTitle] = useState("");
     const [projectDes, setProjectDes] = useState("");
-    const [role, setRole] = useState("photographer");
+    const [category, setCategory] = useState("Wedding");
     const [projectImages, setProjectImages] = useState(null);
 
     const handleSubmit = (event) => {
@@ -25,14 +25,14 @@ function PopupForm({ onSubmit, isOpen, onClose }) {
         formData.append('userId', auth.userId);
         formData.append('title', projectTitle);
         formData.append('description', projectDes);
-        formData.append('category', role);
+        formData.append('category', category);
 
         for (let i = 0; i < projectImages.length; i++) {
             formData.append('image', projectImages[i]);
         }
 
         // Send the request
-        axios.post('http://localhost:3000/portfolio', formData, {
+        axios.post(`${rooturl}/portfolio`, formData, {
             headers: {
             'Content-Type': 'multipart/form-data',
             },
@@ -86,10 +86,10 @@ function PopupForm({ onSubmit, isOpen, onClose }) {
         <label>Project Description</label>
         <input type='text' placeholder='' value={projectDes} onChange={(e) => setProjectDes(e.target.value)} />
         <label>Catagory</label>
-        <select value={role} onChange={(e) => setRole(e.target.value)}>
-            <option value='photographer'>Wedding</option>
-            <option value='client'>Birthday</option>
-            <option value='admin'>Wildlife</option>
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value='Wedding'>Wedding</option>
+            <option value='Birthday'>Birthday</option>
+            <option value='Wildlife'>Wildlife</option>
         </select>
         <label>Profile Image
             <input multiple accept="image/*,video/*" type='file' className='file-upload' onChange={(e) => setProjectImages(e.target.files)} />

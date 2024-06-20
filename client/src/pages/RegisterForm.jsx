@@ -4,8 +4,10 @@ import LoginBackground from '../assets/images/login-bg.jpg'
 import { Button } from '../components';
 import { useState } from "react";
 import Axios from "axios";
+import { useAuth } from '../auth/Auth';
 
 const RegisterForm = (props) => {
+    const rooturl = import.meta.env.VITE_BACKEND_API;
     const [firstName, setfirstName] = useState("");
     const [lastName, setlastName] = useState("");
     const [email, setEmail] = useState("");
@@ -16,6 +18,8 @@ const RegisterForm = (props) => {
     const [role, setRole] = useState("photographer")
 
     const [step, setStep] = useState(1);
+
+    const { login } = useAuth();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -34,13 +38,18 @@ const RegisterForm = (props) => {
         formData.append('profileImage', profileImage); // This should be a File object
 
         // Send the request
-        Axios.post('http://localhost:3000/users', formData, {
+        Axios.post(`${rooturl}/users`, formData, {
             headers: {
             'Content-Type': 'multipart/form-data',
             },
         })
         .then(response => {
             console.log(response);
+            if (response.status === 201) {
+                login(response.data._id);
+                console.log(response.data._id);
+                window.location.href = '/dashboard';
+            }
         })
         .catch(error => {
             console.error(error);

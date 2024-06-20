@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
     const user = { userId };
     localStorage.removeItem('auth');
     localStorage.setItem('auth', JSON.stringify(user));
-    alert('log in success');
+    // alert('log in success');
     setAuth(user);
   };
 

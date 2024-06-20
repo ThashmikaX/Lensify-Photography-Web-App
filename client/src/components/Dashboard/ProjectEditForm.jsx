@@ -4,6 +4,7 @@ import axios from 'axios';
 import Button from "../Button";
 
 function ProjectEditForm({ isOpen, onClose, project_Id }) {
+  const rooturl = import.meta.env.VITE_BACKEND_API;
   const dialogRef = useRef();
   const [project, setProject] = useState({
     _id: '',
@@ -16,8 +17,21 @@ function ProjectEditForm({ isOpen, onClose, project_Id }) {
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
 
+    // Create a FormData object
+    const formData = new FormData();
+
+    // Append the form fields to the FormData object
+    formData.append('userId', project.userId);
+    formData.append('title', project.title);
+    formData.append('description', project.description);
+    formData.append('category', project.category);
+
     // Make an API call to update the project
-    axios.put(`http://localhost:3000/userprojects/${props.match.params.id}`, project)
+    axios.put(`${rooturl}/project/`, formData, {
+      params: {
+        id:project._id
+      }
+    })
       .then(response => {
         console.log("Project edit done");
       })
@@ -62,7 +76,7 @@ function ProjectEditForm({ isOpen, onClose, project_Id }) {
       }
 
       console.log("ëdit pop up form", project_Id);
-    axios.get('http://localhost:3000/getprojectbyid', {
+    axios.get(`${rooturl}/getprojectbyid`, {
       params: {
         id: project_Id
       }
@@ -113,9 +127,9 @@ function ProjectEditForm({ isOpen, onClose, project_Id }) {
         <input type='text' name='description' placeholder='' value={project.description} onChange={handleChange} />
         <label>Catagory</label>
         <select name='category' value={project.category} onChange={handleChange}>
-            <option value='photographer'>Wedding</option>
-            <option value='client'>Birthday</option>
-            <option value='admin'>Wildlife</option>
+            <option value='Wedding'>Wedding</option>
+            <option value='Birthday'>Birthday</option>
+            <option value='Wildlife'>Wildlife</option>
         </select>
         {/* <label>Profile Image
             <input name='images'  value={project.images} multiple accept="image/*,video/*" type='file' className='file-upload' onChange={handleChange} />

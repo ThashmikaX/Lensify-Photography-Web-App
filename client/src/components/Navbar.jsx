@@ -47,11 +47,9 @@ const Navbar = ({ links }) => {
       </div>
 
       <div className="login">
-        {!auth && <Button className="white login-button" url="/login">Login or Register</Button>}
+        {!auth && <a className="login-button" href="/login">Login</a>}
         {auth && <ProfileComponent Name='false'></ProfileComponent> }
       </div>
-      
-
     </nav>
   );
 };
