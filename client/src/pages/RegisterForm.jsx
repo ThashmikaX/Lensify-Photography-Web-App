@@ -6,6 +6,7 @@ import { useState } from "react";
 import Axios from "axios";
 
 const RegisterForm = (props) => {
+    const rooturl = import.meta.env.VITE_BACKEND_API;
     const [firstName, setfirstName] = useState("");
     const [lastName, setlastName] = useState("");
     const [email, setEmail] = useState("");
@@ -34,7 +35,7 @@ const RegisterForm = (props) => {
         formData.append('profileImage', profileImage); // This should be a File object
 
         // Send the request
-        Axios.post('http://localhost:3000/users', formData, {
+        Axios.post(`${rooturl}/users`, formData, {
             headers: {
             'Content-Type': 'multipart/form-data',
             },

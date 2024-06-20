@@ -5,6 +5,7 @@ import axios from 'axios';
 import './Projects.css'
 
 const Projects = () => {
+  const rooturl = import.meta.env.VITE_BACKEND_API;
   const [userprojects, setProjects] = useState([]);
   const { auth } = useAuth();
   const [isEditProjectOpen, setIsEditProjectOpen] = useState(false);
@@ -13,7 +14,7 @@ const Projects = () => {
   console.log(auth.userId);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/userprojects', {
+    axios.get(`${rooturl}/userprojects`, {
       params: {
         id: auth.userId
       }
@@ -37,7 +38,11 @@ const Projects = () => {
 
   const handleDelete = (id) => {
     // Make an API call to delete the project
-    axios.delete(`/api/projects/${id}`)
+    axios.delete(`${rooturl}/project`, {
+      params: {
+        id:id
+      }
+    })
       .then(response => {
         // Remove the deleted project from the state
         setProjects(userprojects.filter(project => project._id !== id));
