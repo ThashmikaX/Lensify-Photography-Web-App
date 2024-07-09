@@ -64,19 +64,24 @@ const Projects = () => {
         <div className='overview-column-one'>
           <Card className='user-project-list' style={{ padding: '2rem' }}>
   {userprojects.map(project => (
-    <Card className='user-project' key={project._id}>
-      <h2>{project.title}</h2>
-      <p>{project.description}</p>
-      <p>Category: {project.category}</p>
-      {project.images.map((image, index) => (
-        <img src={image} alt={`Project ${project.title} image ${index + 1}`} key={index} />
-      ))}
-      <button onClick={() => {
-        setProjectId(project._id);
-        handleEdit();
-      }}>Edit</button>
-      <button onClick={() => handleDelete(project._id)}>Delete</button>
-    </Card>
+    <div className='project-card' style={{ backgroundImage: `url(${project.images[0]})` }}>
+    <div className='project-card-first-c'>
+    <h2 className='project-title'>{project.title}</h2>
+    <p className='project-description'>{project.description}</p>
+      </div>
+      <div className='project-card-second-c'>
+        <p className='project-category'>{project.category}</p>
+        <div className='project-buttons'>
+      <button className='edit-button'>
+        <i className='fas fa-edit'></i>
+      </button>
+      <button className='delete-button'>
+        <i className='fas fa-trash-alt'></i>
+      </button>
+    </div>
+      </div>
+    
+</div>
   ))}
 </Card>
         </div>
