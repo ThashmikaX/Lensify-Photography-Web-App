@@ -43,8 +43,8 @@ pipeline {
         stage('Build Backend Docker Image') {
             steps {
                 script {
-                    dir('Lensify-Photography-Web-App/backend') {
-                        sh 'docker build -t thashmikax/lensify-backend .'
+                    dir('Lensify-Photography-Web-App/server') {
+                        sh 'docker build -t thashmikax/lensify-server .'
                     }
                 }
             }
@@ -53,8 +53,8 @@ pipeline {
         stage('Build Frontend Docker Image') {
             steps {
                 script {
-                    dir('Lensify-Photography-Web-App/frontend') {
-                        sh 'docker build -t thashmikax/lensify-frontend .'
+                    dir('Lensify-Photography-Web-App/client') {
+                        sh 'docker build -t thashmikax/lensify-client .'
                     }
                 }
             }
@@ -64,8 +64,8 @@ pipeline {
             steps {
                 script {
                     sh "echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin"
-                    sh 'docker push thashmikax/lensify-backend'
-                    sh 'docker push thashmikax/lensify-frontend'
+                    sh 'docker push thashmikax/lensify-server'
+                    sh 'docker push thashmikax/lensify-client'
                 }
             }
         }
@@ -76,12 +76,12 @@ pipeline {
                     withCredentials([sshUserPrivateKey(credentialsId: 'EC2-SSH-Key', keyFileVariable: 'EC2_SSH_KEY')]) {
                         sh """
                             ssh -o StrictHostKeyChecking=no -i \$EC2_SSH_KEY ${EC2_USER}@${EC2_IP} '
-                            docker pull thashmikax/lensify-backend &&
-                            docker pull thashmikax/lensify-frontend &&
-                            docker rm -f lensify-backend || true &&
-                            docker rm -f lensify-frontend || true &&
-                            docker run -d -p 3000:3000 --name lensify-backend thashmikax/lensify-backend &&
-                            docker run -d -p 5173:5173 --name lensify-frontend thashmikax/lensify-frontend
+                            docker pull thashmikax/lensify-server &&
+                            docker pull thashmikax/lensify-client &&
+                            docker rm -f lensify-server || true &&
+                            docker rm -f lensify-client || true &&
+                            docker run -d -p 3000:3000 --name lensify-server thashmikax/lensify-server &&
+                            docker run -d -p 5173:5173 --name lensify-client thashmikax/lensify-client
                             '
                         """
                     }
