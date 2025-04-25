@@ -24,21 +24,20 @@ pipeline {
         stage('ls frontend content'){
             steps {
                 script {
-                    dir('Lensify-Photography-Web-App/frontend') {
                         sh 'ls -la'
                     }
                 }
             }
         }
-        stage('ls backend content'){
-            steps {
-                script {
-                    dir('Lensify-Photography-Web-App/backend') {
-                        sh 'ls -la'
-                    }
-                }
-            }
-        }
+        // stage('ls backend content'){
+        //     steps {
+        //         script {
+        //             dir('Lensify-Photography-Web-App/backend') {
+        //                 sh 'ls -la'
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Build Backend Docker Image') {
             steps {
