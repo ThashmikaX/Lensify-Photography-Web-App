@@ -21,19 +21,19 @@ pipeline {
                 }
             }
         }
-        stage('ls frontend content'){
+        stage('ls client content'){
             steps {
                 script {
-                    dir('frontend') {
+                    dir('client') {
                         sh 'ls -la'
                     }
                 }
             }
         }
-        stage('ls b content'){
+        stage('ls server content'){
             steps {
                 script {
-                    dir('backend') {
+                    dir('server') {
                         sh 'ls -la'
                     }
                 }
