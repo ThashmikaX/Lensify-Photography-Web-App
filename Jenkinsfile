@@ -11,9 +11,9 @@ pipeline {
         EC2_USER = 'ubuntu' // default for Ubuntu
     }
 
-    stages {
-        stage('Checkout Code') {
-            steps {
+    stage('Checkout Code') {
+        steps {
+            dir('Lensify-Photography-Web-App') {
                 git credentialsId: 'Github-PAT', 
                     url: 'https://github.com/ThashmikaX/Lensify-Photography-Web-App.git',
                     branch: 'main'
@@ -23,8 +23,7 @@ pipeline {
         stage('Build Backend Docker Image') {
             steps {
                 script {
-                    dir('backend') {
-                        echo "Building backend Docker image..."
+                    dir('Lensify-Photography-Web-App/backend') {
                         sh 'docker build -t thashmikax/lensify-backend .'
                     }
                 }
