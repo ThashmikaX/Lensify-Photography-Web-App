@@ -9,6 +9,12 @@ pipeline {
         // EC2 information
         EC2_IP = '13.51.162.118'
         EC2_USER = 'ubuntu' // default for Ubuntu
+
+        // Force heartbeat for long running tasks
+        JAVA_OPTS = '-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=86400'
+
+        // Enable BuildKit
+        DOCKER_BUILDKIT = '1'
     }
 
     stages {
@@ -21,41 +27,35 @@ pipeline {
                 }
             }
         }
-        stage('ls client content'){
+
+        stage('List Client Content') {
             steps {
-                script {
-                    dir('client') {
-                        sh 'ls -la'
-                    }
+                dir('Lensify-Photography-Web-App/client') {
+                    sh 'ls -la'
                 }
             }
         }
-        stage('ls server content'){
+
+        stage('List Server Content') {
             steps {
-                script {
-                    dir('server') {
-                        sh 'ls -la'
-                    }
+                dir('Lensify-Photography-Web-App/server') {
+                    sh 'ls -la'
                 }
             }
         }
 
         stage('Build Backend Docker Image') {
             steps {
-                script {
-                    dir('Lensify-Photography-Web-App/server') {
-                        sh 'docker build -t thashmikax/lensify-server .'
-                    }
+                dir('Lensify-Photography-Web-App/server') {
+                    sh 'docker build --network=host -t thashmikax/lensify-server .'
                 }
             }
         }
 
         stage('Build Frontend Docker Image') {
             steps {
-                script {
-                    dir('Lensify-Photography-Web-App/client') {
-                        sh 'docker build -t thashmikax/lensify-client .'
-                    }
+                dir('Lensify-Photography-Web-App/client') {
+                    sh 'docker build --network=host -t thashmikax/lensify-client .'
                 }
             }
         }
@@ -63,7 +63,7 @@ pipeline {
         stage('Push Docker Images to DockerHub') {
             steps {
                 script {
-                    sh "echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin"
+                    sh "echo \$DOCKERHUB_PASSWORD | docker login -u \$DOCKERHUB_USERNAME --password-stdin"
                     sh 'docker push thashmikax/lensify-server'
                     sh 'docker push thashmikax/lensify-client'
                 }
@@ -92,7 +92,7 @@ pipeline {
 
     post {
         always {
-            echo "Cleaning up Docker images..."
+            echo "Cleaning up Docker images and system resources..."
             sh 'docker system prune -f'
         }
     }
