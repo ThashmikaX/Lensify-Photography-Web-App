@@ -4,17 +4,14 @@ pipeline {
     environment {
         // DockerHub credentials
         DOCKERHUB_USERNAME = 'thashmikax'
-        DOCKERHUB_PASSWORD = credentials('dockerhub-pat') // Jenkins credentials ID for DockerHub token
+        DOCKERHUB_PASSWORD = credentials('dockerhub-pat')
 
         // EC2 information
         EC2_IP = '13.51.162.118'
-        EC2_USER = 'ubuntu' // default for Ubuntu
+        EC2_USER = 'ubuntu'
 
         // Force heartbeat for long running tasks
         JAVA_OPTS = '-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=86400'
-
-        // Enable BuildKit
-        DOCKER_BUILDKIT = '1'
     }
 
     stages {
