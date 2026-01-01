@@ -24,20 +24,23 @@ const ImageAnimation = () => {
   <>
     <style>
         {`
-        .image-animation * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            width: 100%;
+        .image-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
         }
         .image-animation img {
-            left: 0px;
-            top: 0px;
-            z-index: -1;
             position: absolute;
-            height: 100%;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
             object-fit: cover;
+            object-position: center;
             opacity: 0;
             transition: opacity 2s ease-in-out;
         }
@@ -47,7 +50,7 @@ const ImageAnimation = () => {
     </style>
     <div className="image-animation">
       {images.map((image, i) => (
-        <img src={image} className={i === index ? 'active' : ''} key={i} style={{ overflowX: 'hidden' }}/>
+        <img src={image} className={i === index ? 'active' : ''} key={i} alt="background"/>
       ))}
     </div>
   </>
