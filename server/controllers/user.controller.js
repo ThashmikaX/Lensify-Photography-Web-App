@@ -32,10 +32,36 @@ const verifyUser = async (req, res) => {
 }
 
 const getUserProfile = async (req, res) => {
-    const respond = await User.findById(req.query.id, 'firstName lastName profilePicture').exec();
+    const respond = await User.findById(req.query.id, 'firstName lastName email profilePicture bio location specialty').exec();
     res.send({ respond, message: "data get done" });
 }
 
+const updateUserProfile = async (req, res) => {
+    const userId = req.query.id;
+    const updatedData = req.body;
+
+    // If a new profile picture was uploaded
+    if (req.file) {
+        updatedData.profilePicture = req.file.path;
+    }
+
+    try {
+        const updatedUser = await User.findByIdAndUpdate(
+            userId, 
+            updatedData, 
+            { new: true, select: 'firstName lastName email profilePicture bio location specialty' }
+        ).exec();
+        
+        if (!updatedUser) {
+            return res.status(404).send({ message: "User not found" });
+        }
+        
+        res.send({ respond: updatedUser, message: "Profile updated successfully" });
+    } catch (error) {
+        res.status(500).send({ message: "Error updating profile", error: error.message });
+    }
+}
+
 module.exports = {
-    saveUser, verifyUser, getUserProfile
+    saveUser, verifyUser, getUserProfile, updateUserProfile
 }

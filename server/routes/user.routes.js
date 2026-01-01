@@ -12,6 +12,7 @@ const router = Router();
 router.post('/users', profileParser.single('profileImage'), userController.saveUser);
 router.post('/login', userController.verifyUser);
 router.get('/userprofile', userController.getUserProfile);
+router.put('/userprofile', profileParser.single('profileImage'), userController.updateUserProfile);
 
 
 
