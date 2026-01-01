@@ -10,51 +10,92 @@ const Projects = () => {
   const { auth } = useAuth();
   const [isEditProjectOpen, setIsEditProjectOpen] = useState(false);
   const [projectId, setProjectId] = useState(null);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [projectToDelete, setProjectToDelete] = useState(null);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   console.log(auth.userId);
 
-  useEffect(() => {
+  const fetchProjects = () => {
     axios.get(`${rooturl}/userprojects`, {
       params: {
         id: auth.userId
       }
     })
       .then(response => {
-      // Check if response.data is an array, if not, make it an array
-      const projectsData = Array.isArray(response.data) ? response.data : [response.data];
-      setProjects(projectsData);
-    })
+        const projectsData = Array.isArray(response.data) ? response.data : [response.data];
+        setProjects(projectsData);
+      })
       .catch(error => {
         console.log('Error in fetching projects', error);
       });
-  }, []);
+  };
 
-  const handleEdit = () => {
+  useEffect(() => {
+    fetchProjects();
+  }, [refreshTrigger]);
+
+  const handleEdit = (id) => {
+    setProjectId(id);
     setIsEditProjectOpen(true);
-    console.log('project id ', projectId);
-    console.log("handle edit called", projectId);
+  };
 
-  }
+  const handleEditClose = () => {
+    setIsEditProjectOpen(false);
+    setProjectId(null);
+    // Refresh projects after edit
+    setRefreshTrigger(prev => prev + 1);
+  };
 
-  const handleDelete = (id) => {
-    // Make an API call to delete the project
+  const openDeleteDialog = (project) => {
+    setProjectToDelete(project);
+    setIsDeleteDialogOpen(true);
+  };
+
+  const closeDeleteDialog = () => {
+    setIsDeleteDialogOpen(false);
+    setProjectToDelete(null);
+  };
+
+  const handleDelete = () => {
+    if (!projectToDelete) return;
+    
     axios.delete(`${rooturl}/project`, {
       params: {
-        id:id
+        id: projectToDelete._id
       }
     })
       .then(response => {
-        // Remove the deleted project from the state
-        setProjects(userprojects.filter(project => project._id !== id));
+        setProjects(userprojects.filter(project => project._id !== projectToDelete._id));
+        closeDeleteDialog();
       })
       .catch(error => {
         console.log('Error in deleting project', error);
+        closeDeleteDialog();
       });
-  }
+  };
 
   return (
     <>
-    <ProjectEditForm isOpen={isEditProjectOpen} onClose={() => setIsEditProjectOpen(false)} project_Id={projectId}/>
+    <ProjectEditForm isOpen={isEditProjectOpen} onClose={handleEditClose} project_Id={projectId}/>
+    
+    {/* Delete Confirmation Dialog */}
+    {isDeleteDialogOpen && (
+      <div className="delete-dialog-overlay">
+        <div className="delete-dialog">
+          <div className="delete-dialog-icon">
+            <i className="fas fa-exclamation-triangle"></i>
+          </div>
+          <h3>Delete Project</h3>
+          <p>Are you sure you want to delete <strong>"{projectToDelete?.title}"</strong>? This action cannot be undone.</p>
+          <div className="delete-dialog-buttons">
+            <button className="cancel-btn" onClick={closeDeleteDialog}>Cancel</button>
+            <button className="confirm-delete-btn" onClick={handleDelete}>Delete</button>
+          </div>
+        </div>
+      </div>
+    )}
+    
     <div className='overview'>
       <div className='overview-header'>
         <h1 className='headline'>Projects</h1>
@@ -72,10 +113,10 @@ const Projects = () => {
       <div className='project-card-second-c'>
         <p className='project-category'>{project.category}</p>
         <div className='project-buttons'>
-      <button className='edit-button'>
+      <button className='edit-button' onClick={() => handleEdit(project._id)}>
         <i className='fas fa-edit'></i>
       </button>
-      <button className='delete-button'>
+      <button className='delete-button' onClick={() => openDeleteDialog(project)}>
         <i className='fas fa-trash-alt'></i>
       </button>
     </div>

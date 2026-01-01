@@ -27,13 +27,14 @@ function ProjectEditForm({ isOpen, onClose, project_Id }) {
     formData.append('category', project.category);
 
     // Make an API call to update the project
-    axios.put(`${rooturl}/project/`, formData, {
+    axios.put(`${rooturl}/project`, formData, {
       params: {
-        id:project._id
+        id: project._id
       }
     })
       .then(response => {
-        console.log("Project edit done");
+        console.log("Project updated successfully");
+        if (onClose) onClose();
       })
       .catch(error => {
         console.log('Error in updating project', error);
@@ -71,23 +72,33 @@ function ProjectEditForm({ isOpen, onClose, project_Id }) {
     useEffect(() => {
   if (isOpen) {
     if (dialogRef.current) dialogRef.current.showModal();
+    
+    // Only fetch if we have a valid project_Id
+    if (project_Id) {
+      axios.get(`${rooturl}/getprojectbyid`, {
+        params: {
+          id: project_Id
+        }
+      })
+        .then(response => {
+          setProject(response.data);
+        })
+        .catch(error => {
+          console.log('Error in fetching project', error);
+        });
+    }
   } else if (dialogRef.current && dialogRef.current.open) {
     dialogRef.current.close();
-      }
-
-      console.log("ëdit pop up form", project_Id);
-    axios.get(`${rooturl}/getprojectbyid`, {
-      params: {
-        id: project_Id
-      }
-    })
-      .then(response => {
-        setProject(response.data);
-      })
-      .catch(error => {
-        console.log('Error in fetching project', error);
-      });
-}, [isOpen]);
+    // Reset form when closing
+    setProject({
+      _id: '',
+      userId: '',
+      title: '',
+      description: '',
+      category: ''
+    });
+  }
+}, [isOpen, project_Id]);
 
     useEffect(() => {
         const dialogElement = dialogRef.current;
@@ -138,8 +149,8 @@ function ProjectEditForm({ isOpen, onClose, project_Id }) {
           <Button type="button" onClick={closeDialog} className="white button">
             Cancel
           </Button>
-          <Button type="submit" onClick={closeDialog} className="white button">
-            Submit
+          <Button type="submit" className="white button">
+            Save Changes
         </Button>
         </div>
       </form>
