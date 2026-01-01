@@ -35,8 +35,6 @@ const Main = () => {
                   <Landing />
                   <ImageAnimation/>
                 </Element>
-                <Element name="section2" className='Landing section1'>
-                </Element>
               </>
             } />
             <Route path='/login' element={<><LoginForm /><ImageAnimation/></>}/>
