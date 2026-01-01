@@ -1,20 +1,4 @@
-/* Google Fonts - Poppins */
-@font-face {
-    font-family: 'test-bold';
-    src: url(../fonts/TestSöhneBreit-Dreiviertelfett.otf) format('opentype');
-}
-
-@font-face {
-    font-family: 'test-regular';
-    src: url(../fonts/TESTSÖHNEBREIT-LEICHT.otf) format('opentype');
-}
-
-.nav * {
-    font-family: test-regular;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* Navbar Styles */
 
 .nav {
     width: 100%;

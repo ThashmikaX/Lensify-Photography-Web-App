@@ -1,13 +1,4 @@
-@font-face {
-    font-family: 'TestSöhneBreit-Dreiviertelfett';
-    src: url(../fonts/TestSöhneBreit-Dreiviertelfett.otf) format('opentype');
-}
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* Landing Page Styles */
 
 /* Landing Container */
 .landing-container {
@@ -69,9 +60,9 @@
 }
 
 .main-head{
-    font-family: 'TestSöhneBreit-Dreiviertelfett';
+    font-family: 'Sohne', sans-serif;
     font-size: 8rem;
-    font-weight: 900;
+    font-weight: 700;
     color: #fffefe;
     text-align: center;
     vertical-align: middle;
@@ -82,7 +73,7 @@
 
 .sub-head{
     font-size: 3rem;
-    font-weight: 500;
+    font-weight: 300;
     color: #fffefe;
     text-align: center;
     overflow: hidden;
