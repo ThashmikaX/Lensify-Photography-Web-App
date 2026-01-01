@@ -9,12 +9,11 @@
     src: url(../fonts/TESTSÖHNEBREIT-LEICHT.otf) format('opentype');
 }
 
-* {
+.nav * {
     font-family: test-regular;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    width: 100%;
 }
 
 .nav {
@@ -23,6 +22,7 @@
     display: flex;
     flex-direction: row;
     background: linear-gradient(0deg, rgba(2, 0, 36, 0) 0%, rgba(0, 0, 0, 1) 150%);
+    z-index: 1000;
 }
 
 .nav-links {
@@ -37,6 +37,16 @@
 .nav a {
     color: #ffffff;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-links li {
+    width: auto;
+    cursor: pointer;
+}
+
+.nav-links a {
+    cursor: pointer;
 }
 
 .nav .login .login-button {
@@ -61,7 +71,7 @@
 .nav .logo {
     font-size: 22px;
     font-weight: 500;
-    width: 20%;
+    width: auto;
     text-decoration: none;
     color: #ffffff;
 }
@@ -73,7 +83,7 @@
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
-
+    width: auto;
 }
 
 .nav .nav-links a {
@@ -136,11 +146,14 @@
     display: none;
 }
 .login{
-    width:fit-content;
+    width: auto;
 }
 
 .tabs{
-    width: 50%;
+    width: auto;
+    flex: 1;
+    display: flex;
+    justify-content: center;
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;

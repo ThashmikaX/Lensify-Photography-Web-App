@@ -3,6 +3,7 @@ import './Landing.css'
 import { Button, Card } from '../components'
 import { useAuth } from '../auth/Auth';
 import { I1, I2, I3, I4, I5 } from '../assets/landscapes';
+import { Element } from 'react-scroll';
 
 const Landing = () => {
   const { auth } = useAuth();
@@ -80,7 +81,7 @@ const Landing = () => {
   return (
     <div className='landing-container'>
       {/* Hero Section */}
-      <section className='hero-section'>
+      <Element name='section1' className='hero-section'>
         <div className='title'>
           <h1 className='sub-head head'>Perfect Lens for Your</h1>
           <h1 className='main-head head'>Perfect Moment</h1>
@@ -98,10 +99,10 @@ const Landing = () => {
             )}
           </div>
         </div>
-      </section>
+      </Element>
 
       {/* Info/Services Section */}
-      <section className='info-section' id='section2'>
+      <Element name='section2' className='info-section'>
         <div className='section-header'>
           <h2 className='section-title'>Our Services</h2>
           <p className='section-subtitle'>Professional photography services tailored to your needs</p>
@@ -115,7 +116,7 @@ const Landing = () => {
             </Card>
           ))}
         </div>
-      </section>
+      </Element>
 
       {/* Stats Section */}
       <section className='stats-section'>
@@ -140,7 +141,7 @@ const Landing = () => {
       </section>
 
       {/* Tours Section */}
-      <section className='tours-section' id='section3'>
+      <Element name='section3' className='tours-section'>
         <div className='section-header'>
           <h2 className='section-title'>Photography Tours</h2>
           <p className='section-subtitle'>Join our exclusive photography expeditions around the world</p>
@@ -163,10 +164,10 @@ const Landing = () => {
             </Card>
           ))}
         </div>
-      </section>
+      </Element>
 
       {/* Gallery Section */}
-      <section className='gallery-section' id='section4'>
+      <Element name='section4' className='gallery-section'>
         <div className='section-header'>
           <h2 className='section-title'>Our Gallery</h2>
           <p className='section-subtitle'>A showcase of our finest work</p>
@@ -181,7 +182,7 @@ const Landing = () => {
             </div>
           ))}
         </div>
-      </section>
+      </Element>
 
       {/* Testimonials Section */}
       <section className='testimonials-section'>
@@ -208,7 +209,7 @@ const Landing = () => {
       </section>
 
       {/* About Section */}
-      <section className='about-section' id='section5'>
+      <Element name='section5' className='about-section'>
         <div className='about-content'>
           <div className='about-text'>
             <h2>About Lensify</h2>
@@ -246,7 +247,7 @@ const Landing = () => {
             <img src={I4} alt='About Lensify' />
           </div>
         </div>
-      </section>
+      </Element>
 
       {/* CTA Section */}
       <section className='cta-section'>
