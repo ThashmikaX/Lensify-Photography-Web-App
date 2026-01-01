@@ -81,22 +81,25 @@
 
 /* Section Common Styles */
 .section-header {
-    text-align: center;
-    margin-bottom: 4rem;
+    text-align: left;
+    margin-bottom: 3rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 5%;
 }
 
 .section-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: #1a1a2e;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .section-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #666;
     max-width: 600px;
-    margin: 0 auto;
 }
 
 /* Info/Services Section */
@@ -114,8 +117,8 @@
 }
 
 .service-card {
-    padding: 2.5rem;
-    text-align: center;
+    padding: 2rem;
+    text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
 }
@@ -126,9 +129,12 @@
 }
 
 .service-icon {
-    font-size: 3rem;
-    display: block;
-    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 .service-card h3 {
@@ -151,16 +157,15 @@
 }
 
 .stats-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     max-width: 1200px;
     margin: 0 auto;
     gap: 2rem;
 }
 
 .stat-item {
-    text-align: center;
+    text-align: left;
     padding: 2rem;
 }
 
@@ -230,10 +235,11 @@
 
 .tour-content {
     padding: 1.5rem;
+    text-align: left;
 }
 
 .tour-content h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #1a1a2e;
     margin-bottom: 0.5rem;
 }
@@ -339,6 +345,7 @@
 
 .testimonial-card {
     padding: 2rem;
+    text-align: left;
     transition: transform 0.3s ease;
 }
 
@@ -442,17 +449,21 @@
 .cta-section {
     padding: 6rem 5%;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    text-align: center;
+}
+
+.cta-content {
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .cta-content h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #fff;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .cta-content p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 2rem;
 }
@@ -460,7 +471,6 @@
 .cta-buttons {
     display: flex;
     gap: 1rem;
-    justify-content: center;
 }
 
 /* Footer */
@@ -634,15 +644,19 @@
     
     .hero-buttons {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
     }
     
     .section-title {
         font-size: 2rem;
     }
     
+    .section-header {
+        padding: 0;
+    }
+    
     .stats-container {
-        flex-direction: column;
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .stat-item h3 {
@@ -664,20 +678,24 @@
     
     .footer-content {
         grid-template-columns: 1fr;
-        text-align: center;
     }
     
     .footer-links {
         grid-template-columns: 1fr;
+        text-align: left;
+    }
+    
+    .footer-brand {
+        text-align: left;
     }
     
     .social-links {
-        justify-content: center;
+        justify-content: flex-start;
     }
     
     .cta-buttons {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
     }
     
     .about-text h2 {

@@ -27,7 +27,7 @@
 .project-card-on-overview .project-count-and-button {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: 1.5rem;
     gap: 1rem;
 }

@@ -4,6 +4,12 @@ const cors = require('cors');
 const chalk = require('chalk'); //Use for print color messages on console
 const dotenv = require('dotenv');
 
+// Fix for self-signed certificate issues in development
+// Remove this in production or use proper certificates
+if (process.env.NODE_ENV !== 'production') {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+}
+
 const app = express();
 dotenv.config();
 
