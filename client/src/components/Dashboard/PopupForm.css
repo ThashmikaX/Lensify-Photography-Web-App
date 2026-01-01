@@ -1,91 +1,77 @@
+/* Popup Form Dialog Styles */
 .dialog-form {
     background: #ffffff;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
+    padding: 2rem;
     margin: auto;
-    border-radius: 10px;
-    border-style: none;
-    font-size: 20px;
-    width: 30%;
-
-    
+    border-radius: 20px;
+    border: none;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
+
 .field {
     width: 100%;
-    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
 
-    label {
-        font-size: 1.2rem;
-        margin-top: 1rem;
-    }
+.field label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-top: 0.75rem;
+}
 
-    input {
-        width: 100%;
-        padding: 0.5rem;
-        font-size: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 20px;
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
+.field input,
+.field select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: #f9fafb;
+    transition: all 0.2s ease;
+}
 
-    input:focus {
-        outline: none;
-        border-color: #333;
-        transition: 0.5;
-    }
+.field input:focus,
+.field select:focus {
+    outline: none;
+    border-color: #667eea;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
 
-    .buttons{
-        display: flex;
-        margin-top: 1rem;
-        justify-content: space-between;
-        gap: 1rem;
-    }
+.field input:hover,
+.field select:hover {
+    border-color: #d1d5db;
+}
 
-    .space {
-        width: 10%;
-    }
+.field .file-upload {
+    padding: 1rem;
+    border: 2px dashed #e5e7eb;
+    border-radius: 12px;
+    background: #f9fafb;
+    cursor: pointer;
+}
 
-    select {
-        width: 100%;
-        padding: 0.5rem;
-        font-size: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 20px;
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
+.field .file-upload:hover {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
 
-    select:focus {
-        outline: none;
-        border-color: #333;
-        transition: 0.5;
-    }
+.field .buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: flex-end;
+}
 
-    select:hover {
-        border-color: #333;
-        transition: 0.5;
-    }
-
-    .file-upload {
-        width: 100%;
-        padding: 0.5rem;
-        font-size: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 20px;
-    }
-
-    .file-upload:focus {
-        outline: none;
-        border-color: #333;
-        transition: 0.5;
-    }
-
-    .file-upload:hover {
-        border-color: #333;
-        transition: 0.5;
-    }
+.field .buttons .button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
 }
 
 dialog {
