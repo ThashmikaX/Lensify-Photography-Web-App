@@ -22,10 +22,10 @@ const Main = () => {
         <div className="container1">
           {!hideNav && <Navbar className="nav-bar" links={[
             { name: 'Home', to: 'section1' },
-            { name: 'Info', to: 'section2' },
-            { name: 'Tours', to: 'section3' },
+            { name: 'How It Works', to: 'section2' },
+            { name: 'Photographers', to: 'section3' },
             { name: 'Gallery', to: 'section4' },
-            { name: 'About us', to: 'section5' }
+            { name: 'About', to: 'section5' }
           ]} />}
 
           <Routes className="container2">
